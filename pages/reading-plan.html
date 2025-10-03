@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطة قراءة العهد الجديد - شبيبة الرسل</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .reading-hero {
+            background: linear-gradient(rgba(106, 176, 76, 0.9), rgba(56, 142, 60, 0.9)), url('../images/bible-bg.jpg');
+            background-size: cover;
+            color: white;
+            padding: 100px 0 60px;
+            text-align: center;
+        }
+        
+        .progress-container {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            max-width: 800px;
+        }
+        
+        .progress-info {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        
+        .progress-bar {
+            background: #f0f0f0;
+            border-radius: 10px;
+            height: 20px;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            background: #4CAF50;
+            height: 100%;
+            transition: width 0.5s ease;
+        }
+        
+        .reading-schedule {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 40px 0;
+        }
+        
+        .day-card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            border-left: 4px solid #4CAF50;
+        }
+        
+        .day-card.completed {
+            border-left-color: #8BC34A;
+            background: #f9fff9;
+        }
+        
+        .day-number {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #333;
+        }
+        
+        .chapters-list {
+            margin: 10px 0;
+            color: #666;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .read-btn {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        
+        .mark-btn {
+            background: #2196F3;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .reset-btn {
+            background: #ff9800;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/logo.png" alt="شبيبة الرسل" class="logo">
+                <a href="../index.html">شبيبة الرسل</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="bible-studies.html" class="nav-link">الكتاب المقدس</a></li>
+                <li class="nav-item"><a href="meetings.html" class="nav-link">الاجتماعات</a></li>
+                <li class="nav-item"><a href="activities.html" class="nav-link">النشاطات</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">عن الشبيبة</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم الهيدر -->
+    <section class="reading-hero">
+        <div class="container">
+            <h1>📖 خطة قراءة العهد الجديد</h1>
+            <p class="hero-subtitle">"كل الكتاب هو موحى به من الله" - 2 تيموثاوس 3: 16</p>
+            <p>اقرأ العهد الجديد كاملاً في 90 يومًا فقط!</p>
+        </div>
+    </section>
+
+    <!-- قسم التقدم -->
+    <section class="container">
+        <div class="progress-container">
+            <h2>تقدمك في الخطة</h2>
+            <div class="progress-info">
+                <span id="days-completed">0 يوم مكتمل</span>
+                <span id="total-chapters">0 إصحاح</span>
+                <span id="percentage">0%</span>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill" style="width: 0%"></div>
+            </div>
+            <button class="reset-btn" onclick="resetProgress()">إعادة تعيين التقدم</button>
+        </div>
+
+        <!-- جدول القراءة -->
+        <div class="reading-schedule" id="reading-schedule">
+            <!-- سيتم إضافة الأيام تلقائياً -->
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 شبيبة الرسل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+// خطة القراءة لمدة 90 يوماً - الترجمة اليسوعية
+const readingPlan = [
+    // إنجيل متى (10 أيام)
+    { day: 1, chapters: "متى 1-4", link: "https://arabchurch.com/ArabicBible/jab/Matthew/1" },
+    { day: 2, chapters: "متى 5-7", link: "https://www.arabchurch.com/ArabicBible/jab/matthew/5" },
+    { day: 3, chapters: "متى 8-10", link: "https://www.arabchurch.com/ArabicBible/jab/matthew/8" },
+    { day: 4, chapters: "متى 11-13", link: "https://www.arabchurch.com/ArabicBible/jab/matthew/11" },
+    { day: 5, chapters: "متى 14-16", link: "https://www.arabchurch.com/ArabicBible/jab/matthew/14" },
+    { day: 6, chapters: "متى 17-19", link: "https://www.arabchurch.com/ArabicBible/jab/matthew/17" },
+    { day: 7, chapters: "متى 20-22", link: "https://www.arabchurch.com/ArabicBible/jab/matthew/20" },
+    { day: 8, chapters: "متى 23-25", link: "https://www.arabchurch.com/ArabicBible/jab/matthew/23" },
+    { day: 9, chapters: "متى 26-28", link: "https://www.arabchurch.com/ArabicBible/jab/matthew/26" },
+    
+    // إنجيل مرقس (8 أيام)
+    { day: 10, chapters: "مرقس 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/mark/1" },
+    { day: 11, chapters: "مرقس 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/mark/4" },
+    { day: 12, chapters: "مرقس 7-9", link: "https://www.arabchurch.com/ArabicBible/jab/mark/7" },
+    { day: 13, chapters: "مرقس 10-12", link: "https://www.arabchurch.com/ArabicBible/jab/mark/10" },
+    { day: 14, chapters: "مرقس 13-16", link: "https://www.arabchurch.com/ArabicBible/jab/mark/13" },
+    
+    // إنجيل لوقا (12 يوم)
+    { day: 15, chapters: "لوقا 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/luke/1" },
+    { day: 16, chapters: "لوقا 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/luke/4" },
+    { day: 17, chapters: "لوقا 7-9", link: "https://www.arabchurch.com/ArabicBible/jab/luke/7" },
+    { day: 18, chapters: "لوقا 10-12", link: "https://www.arabchurch.com/ArabicBible/jab/luke/10" },
+    { day: 19, chapters: "لوقا 13-15", link: "https://www.arabchurch.com/ArabicBible/jab/luke/13" },
+    { day: 20, chapters: "لوقا 16-18", link: "https://www.arabchurch.com/ArabicBible/jab/luke/16" },
+    { day: 21, chapters: "لوقا 19-21", link: "https://www.arabchurch.com/ArabicBible/jab/luke/19" },
+    { day: 22, chapters: "لوقا 22-24", link: "https://www.arabchurch.com/ArabicBible/jab/luke/22" },
+    
+    // إنجيل يوحنا (10 أيام)
+    { day: 23, chapters: "يوحنا 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/john/1" },
+    { day: 24, chapters: "يوحنا 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/john/4" },
+    { day: 25, chapters: "يوحنا 7-9", link: "https://www.arabchurch.com/ArabicBible/jab/john/7" },
+    { day: 26, chapters: "يوحنا 10-12", link: "https://www.arabchurch.com/ArabicBible/jab/john/10" },
+    { day: 27, chapters: "يوحنا 13-15", link: "https://www.arabchurch.com/ArabicBible/jab/john/13" },
+    { day: 28, chapters: "يوحنا 16-18", link: "https://www.arabchurch.com/ArabicBible/jab/john/16" },
+    { day: 29, chapters: "يوحنا 19-21", link: "https://www.arabchurch.com/ArabicBible/jab/john/19" },
+    
+    // أعمال الرسل (12 يوم)
+    { day: 30, chapters: "أعمال 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/acts/1" },
+    { day: 31, chapters: "أعمال 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/acts/4" },
+    { day: 32, chapters: "أعمال 7-9", link: "https://www.arabchurch.com/ArabicBible/jab/acts/7" },
+    { day: 33, chapters: "أعمال 10-12", link: "https://www.arabchurch.com/ArabicBible/jab/acts/10" },
+    { day: 34, chapters: "أعمال 13-15", link: "https://www.arabchurch.com/ArabicBible/jab/acts/13" },
+    { day: 35, chapters: "أعمال 16-18", link: "https://www.arabchurch.com/ArabicBible/jab/acts/16" },
+    { day: 36, chapters: "أعمال 19-21", link: "https://www.arabchurch.com/ArabicBible/jab/acts/19" },
+    { day: 37, chapters: "أعمال 22-24", link: "https://www.arabchurch.com/ArabicBible/jab/acts/22" },
+    { day: 38, chapters: "أعمال 25-28", link: "https://www.arabchurch.com/ArabicBible/jab/acts/25" },
+    
+    // رسائل بولس الرسول
+    { day: 39, chapters: "رومية 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/romans/1" },
+    { day: 40, chapters: "رومية 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/romans/4" },
+    { day: 41, chapters: "رومية 7-9", link: "https://www.arabchurch.com/ArabicBible/jab/romans/7" },
+    { day: 42, chapters: "رومية 10-12", link: "https://www.arabchurch.com/ArabicBible/jab/romans/10" },
+    { day: 43, chapters: "رومية 13-16", link: "https://www.arabchurch.com/ArabicBible/jab/romans/13" },
+    
+    { day: 44, chapters: "1 كورنثوس 1-4", link: "https://www.arabchurch.com/ArabicBible/jab/1_corinthians/1" },
+    { day: 45, chapters: "1 كورنثوس 5-8", link: "https://www.arabchurch.com/ArabicBible/jab/1_corinthians/5" },
+    { day: 46, chapters: "1 كورنثوس 9-12", link: "https://www.arabchurch.com/ArabicBible/jab/1_corinthians/9" },
+    { day: 47, chapters: "1 كورنثوس 13-16", link: "https://www.arabchurch.com/ArabicBible/jab/1_corinthians/13" },
+    
+    { day: 48, chapters: "2 كورنثوس 1-4", link: "https://www.arabchurch.com/ArabicBible/jab/2_corinthians/1" },
+    { day: 49, chapters: "2 كورنثوس 5-8", link: "https://www.arabchurch.com/ArabicBible/jab/2_corinthians/5" },
+    { day: 50, chapters: "2 كورنثوس 9-13", link: "https://www.arabchurch.com/ArabicBible/jab/2_corinthians/9" },
+    
+    { day: 51, chapters: "غلاطية 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/galatians/1" },
+    { day: 52, chapters: "غلاطية 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/galatians/4" },
+    
+    { day: 53, chapters: "أفسس 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/ephesians/1" },
+    { day: 54, chapters: "أفسس 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/ephesians/4" },
+    
+    { day: 55, chapters: "فيلبي 1-2", link: "https://www.arabchurch.com/ArabicBible/jab/philippians/1" },
+    { day: 56, chapters: "فيلبي 3-4", link: "https://www.arabchurch.com/ArabicBible/jab/philippians/3" },
+    
+    { day: 57, chapters: "كولوسي 1-2", link: "https://www.arabchurch.com/ArabicBible/jab/colossians/1" },
+    { day: 58, chapters: "كولوسي 3-4", link: "https://www.arabchurch.com/ArabicBible/jab/colossians/3" },
+    
+    { day: 59, chapters: "1 تسالونيكي 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/1_thessalonians/1" },
+    { day: 60, chapters: "1 تسالونيكي 4-5", link: "https://www.arabchurch.com/ArabicBible/jab/1_thessalonians/4" },
+    
+    { day: 61, chapters: "2 تسالونيكي 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/2_thessalonians/1" },
+    
+    // الرسائل الرعوية
+    { day: 62, chapters: "1 تيموثاوس 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/1_timothy/1" },
+    { day: 63, chapters: "1 تيموثاوس 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/1_timothy/4" },
+    
+    { day: 64, chapters: "2 تيموثاوس 1-2", link: "https://www.arabchurch.com/ArabicBible/jab/2_timothy/1" },
+    { day: 65, chapters: "2 تيموثاوس 3-4", link: "https://www.arabchurch.com/ArabicBible/jab/2_timothy/3" },
+    
+    { day: 66, chapters: "تيطس 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/titus/1" },
+    
+    { day: 67, chapters: "فليمون 1", link: "https://www.arabchurch.com/ArabicBible/jab/philemon/1" },
+    
+    // الرسائل العامة
+    { day: 68, chapters: "عبرانيين 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/hebrews/1" },
+    { day: 69, chapters: "عبرانيين 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/hebrews/4" },
+    { day: 70, chapters: "عبرانيين 7-9", link: "https://www.arabchurch.com/ArabicBible/jab/hebrews/7" },
+    { day: 71, chapters: "عبرانيين 10-12", link: "https://www.arabchurch.com/ArabicBible/jab/hebrews/10" },
+    { day: 72, chapters: "عبرانيين 13", link: "https://www.arabchurch.com/ArabicBible/jab/hebrews/13" },
+    
+    { day: 73, chapters: "يعقوب 1-2", link: "https://www.arabchurch.com/ArabicBible/jab/james/1" },
+    { day: 74, chapters: "يعقوب 3-5", link: "https://www.arabchurch.com/ArabicBible/jab/james/3" },
+    
+    { day: 75, chapters: "1 بطرس 1-2", link: "https://www.arabchurch.com/ArabicBible/jab/1_peter/1" },
+    { day: 76, chapters: "1 بطرس 3-5", link: "https://www.arabchurch.com/ArabicBible/jab/1_peter/3" },
+    
+    { day: 77, chapters: "2 بطرس 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/2_peter/1" },
+    
+    { day: 78, chapters: "1 يوحنا 1-2", link: "https://www.arabchurch.com/ArabicBible/jab/1_john/1" },
+    { day: 79, chapters: "1 يوحنا 3-5", link: "https://www.arabchurch.com/ArabicBible/jab/1_john/3" },
+    
+    { day: 80, chapters: "2 يوحنا 1", link: "https://www.arabchurch.com/ArabicBible/jab/2_john/1" },
+    { day: 81, chapters: "3 يوحنا 1", link: "https://www.arabchurch.com/ArabicBible/jab/3_john/1" },
+    
+    { day: 82, chapters: "يهوذا 1", link: "https://www.arabchurch.com/ArabicBible/jab/jude/1" },
+    
+    // سفر الرؤيا
+    { day: 83, chapters: "رؤيا 1-3", link: "https://www.arabchurch.com/ArabicBible/jab/revelation/1" },
+    { day: 84, chapters: "رؤيا 4-6", link: "https://www.arabchurch.com/ArabicBible/jab/revelation/4" },
+    { day: 85, chapters: "رؤيا 7-9", link: "https://www.arabchurch.com/ArabicBible/jab/revelation/7" },
+    { day: 86, chapters: "رؤيا 10-12", link: "https://www.arabchurch.com/ArabicBible/jab/revelation/10" },
+    { day: 87, chapters: "رؤيا 13-15", link: "https://www.arabchurch.com/ArabicBible/jab/revelation/13" },
+    { day: 88, chapters: "رؤيا 16-18", link: "https://www.arabchurch.com/ArabicBible/jab/revelation/16" },
+    { day: 89, chapters: "رؤيا 19-21", link: "https://www.arabchurch.com/ArabicBible/jab/revelation/19" },
+    { day: 90, chapters: "رؤيا 22", link: "https://www.arabchurch.com/ArabicBible/jab/revelation/22" }
+];        // تحميل التقدم المحفوظ
+        function loadProgress() {
+            const savedProgress = localStorage.getItem('bibleReadingProgress');
+            return savedProgress ? JSON.parse(savedProgress) : {};
+        }
+
+        // حفظ التقدم
+        function saveProgress(progress) {
+            localStorage.setItem('bibleReadingProgress', JSON.stringify(progress));
+        }
+
+        // تحديث واجهة المستخدم
+        function updateUI() {
+            const progress = loadProgress();
+            const scheduleContainer = document.getElementById('reading-schedule');
+            let completedDays = 0;
+            let totalChapters = 0;
+
+            scheduleContainer.innerHTML = '';
+
+            readingPlan.forEach(day => {
+                const isCompleted = progress[day.day] || false;
+                if (isCompleted) completedDays++;
+                totalChapters += day.chapters.split('-').length * 2; // تقدير تقريبي
+
+                const dayCard = document.createElement('div');
+                dayCard.className = `day-card ${isCompleted ? 'completed' : ''}`;
+                dayCard.innerHTML = `
+                    <div class="day-number">اليوم ${day.day}</div>
+                    <div class="chapters-list">${day.chapters}</div>
+                    <div class="action-buttons">
+                        <a href="${day.link}" target="_blank" class="read-btn">اقرأ الآن</a>
+                        <button class="mark-btn" onclick="toggleDay(${day.day})">
+                            ${isCompleted ? '✓ تم القراءة' : 'تم الأنهاء'}
+                        </button>
+                    </div>
+                `;
+                scheduleContainer.appendChild(dayCard);
+            });
+
+            // تحديث شريط التقدم
+            const percentage = Math.round((completedDays / readingPlan.length) * 100);
+            document.getElementById('days-completed').textContent = `${completedDays} يوم مكتمل`;
+            document.getElementById('total-chapters').textContent = `${totalChapters} إصحاح`;
+            document.getElementById('percentage').textContent = `${percentage}%`;
+            document.getElementById('progress-fill').style.width = `${percentage}%`;
+        }
+
+        // تبديل حالة اليوم
+        function toggleDay(dayNumber) {
+            const progress = loadProgress();
+            progress[dayNumber] = !progress[dayNumber];
+            saveProgress(progress);
+            updateUI();
+        }
+
+        // إعادة تعيين التقدم
+        function resetProgress() {
+            if (confirm('هل تريد حقاً إعادة تعيين تقدم القراءة؟')) {
+                localStorage.removeItem('bibleReadingProgress');
+                updateUI();
+            }
+        }
+
+        // التهيئة عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', updateUI);
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

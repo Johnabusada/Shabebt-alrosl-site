@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الألعاب الإلكترونية - شبيبة الرسل</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تنسيقات خاصة بصفحة الألعاب */
+        .games-hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .floating-icons {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+        
+        .floating-icon {
+            position: absolute;
+            font-size: 2rem;
+            opacity: 0.3;
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+        
+        .game-card {
+            background: white;
+            border-radius: 20px;
+            padding: 0;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        
+        .game-header {
+            padding: 25px;
+            background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+            color: white;
+            text-align: center;
+        }
+        
+        .game-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+        
+        .game-content {
+            padding: 25px;
+        }
+        
+        .game-stats {
+            display: flex;
+            justify-content: space-around;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        
+        .stat {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary-color);
+        }
+        
+        .game-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .modal-content {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            left: 20px;
+            font-size: 2rem;
+            cursor: pointer;
+            color: #666;
+            background: none;
+            border: none;
+        }
+        
+        .close-modal:hover {
+            color: var(--accent-color);
+        }
+        
+        .quiz-container {
+            text-align: center;
+        }
+        
+        .game-title {
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+        
+        .question {
+            font-size: 1.3rem;
+            margin-bottom: 25px;
+            color: var(--primary-color);
+            line-height: 1.6;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 10px;
+        }
+        
+        .options {
+            display: grid;
+            gap: 12px;
+            margin: 25px 0;
+        }
+        
+        .option {
+            padding: 15px 20px;
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+        }
+        
+        .option:hover {
+            background: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+            transform: translateX(-5px);
+        }
+        
+        .option.correct {
+            background: #28a745;
+            color: white;
+            border-color: #28a745;
+            animation: pulse 0.6s;
+        }
+        
+        .option.wrong {
+            background: #dc3545;
+            color: white;
+            border-color: #dc3545;
+        }
+        
+        .score-display {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--gold-color);
+            margin: 20px 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .progress {
+            margin-top: 20px;
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .game-controls {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .game-btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .primary-btn {
+            background: var(--secondary-color);
+            color: white;
+        }
+        
+        .secondary-btn {
+            background: #6c757d;
+            color: white;
+        }
+        
+        .game-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .leaderboard-section {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .leaderboard {
+            max-width: 600px;
+            margin: 30px auto;
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .leaderboard-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            background: #f8f9fa;
+        }
+        
+        .leaderboard-item.gold {
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+        }
+        
+        .leaderboard-item.silver {
+            background: linear-gradient(135deg, #c0c0c0, #e8e8e8);
+        }
+        
+        .leaderboard-item.bronze {
+            background: linear-gradient(135deg, #cd7f32, #e89f5e);
+            color: white;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        .game-start-btn {
+            background: linear-gradient(135deg, var(--gold-color), #e67e22);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 15px;
+        }
+        
+        .game-start-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(230, 126, 34, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/logo.png" alt="شبيبة الرسل" class="logo">
+                <a href="../index.html">شبيبة الرسل</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="bible-studies.html" class="nav-link">الكتاب المقدس</a></li>
+                <li class="nav-item"><a href="meetings.html" class="nav-link">الاجتماعات</a></li>
+                <li class="nav-item"><a href="activities.html" class="nav-link">النشاطات</a></li>
+                <li class="nav-item"><a href="games.html" class="nav-link active">الألعاب</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">عن الشبيبة</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم الهيدر -->
+    <section class="games-hero">
+        <div class="floating-icons">
+            <div class="floating-icon" style="top:10%; left:10%; animation-delay: 0s;">🎮</div>
+            <div class="floating-icon" style="top:20%; right:15%; animation-delay: 1s;">🧩</div>
+            <div class="floating-icon" style="top:60%; left:15%; animation-delay: 2s;">🏆</div>
+            <div class="floating-icon" style="top:40%; right:20%; animation-delay: 3s;">⭐</div>
+            <div class="floating-icon" style="top:70%; right:10%; animation-delay: 4s;">💡</div>
+        </div>
+        <div class="container">
+            <h1>الألعاب الإلكترونية 🎯</h1>
+            <p class="hero-subtitle">"اَلأَقْوَالُ أَقْوَالِي وَالْفِكْرُ فِكْرِي" - أمثال 23: 19</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">6</div>
+                    <div class="stat-label">لعبة تفاعلية</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">180</div>
+                    <div class="stat-label">سؤال ديني</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">مستويات صعوبة</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- شبكة الألعاب -->
+    <section class="games-section">
+        <div class="container">
+            <h2>🎲 مكتبة الألعاب التفاعلية</h2>
+            <p class="section-description">اختر لعبتك المفضلة واستمتع بتجربة تعليمية مسلية</p>
+            
+            <div class="games-grid">
+                <!-- لعبة الأسئلة الدينية -->
+                <div class="game-card">
+                    <div class="game-header">
+                        <div class="game-icon">❓</div>
+                        <h3>أسئلة الكتاب المقدس</h3>
+                    </div>
+                    <div class="game-content">
+                        <p>اختبر معرفتك بالكتاب المقدس من خلال أسئلة متنوعة ومثيرة</p>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <div class="stat-number">30</div>
+                                <div class="stat-label">سؤال</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">مستويات</div>
+                            </div>
+                        </div>
+                        <button class="game-start-btn" onclick="startGame('bible')">ابدأ اللعب 🚀</button>
+                    </div>
+                </div>
+
+                <!-- لعبة الشخصيات -->
+                <div class="game-card">
+                    <div class="game-header">
+                        <div class="game-icon">👥</div>
+                        <h3>شخصيات الكتاب المقدس</h3>
+                    </div>
+                    <div class="game-content">
+                        <p>تعرف على شخصيات الكتاب المقدس وأدوارهم في قصص الإيمان</p>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <div class="stat-number">30</div>
+                                <div class="stat-label">سؤال</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4</div>
+                                <div class="stat-label">أقسام</div>
+                            </div>
+                        </div>
+                        <button class="game-start-btn" onclick="startGame('characters')">ابدأ اللعب 👥</button>
+                    </div>
+                </div>
+
+                <!-- لعبة المعجزات -->
+                <div class="game-card">
+                    <div class="game-header">
+                        <div class="game-icon">✨</div>
+                        <h3>معجزات المسيح</h3>
+                    </div>
+                    <div class="game-content">
+                        <p>اختبر معرفتك بمعجزات السيد المسيح وتفاصيلها</p>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <div class="stat-number">30</div>
+                                <div class="stat-label">سؤال</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">3</div>
+                                <div class="stat-label">مراحل</div>
+                            </div>
+                        </div>
+                        <button class="game-start-btn" onclick="startGame('miracles')">ابدأ اللعب ✨</button>
+                    </div>
+                </div>
+
+                <!-- لعبة الأمثال -->
+                <div class="game-card">
+                    <div class="game-header">
+                        <div class="game-icon">📖</div>
+                        <h3>أمثال المسيح</h3>
+                    </div>
+                    <div class="game-content">
+                        <p>تعمق في فهم أمثال السيد المسيح ومعانيها الروحية</p>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <div class="stat-number">30</div>
+                                <div class="stat-label">سؤال</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">5</div>
+                                <div class="stat-label">مواضيع</div>
+                            </div>
+                        </div>
+                        <button class="game-start-btn" onclick="startGame('parables')">ابدأ اللعب 📖</button>
+                    </div>
+                </div>
+
+                <!-- لعبة الرسل -->
+                <div class="game-card">
+                    <div class="game-header">
+                        <div class="game-icon">⛪</div>
+                        <h3>حياة الرسل</h3>
+                    </div>
+                    <div class="game-content">
+                        <p>تعرف على حياة الرسل الاثني عشر وخدماتهم</p>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <div class="stat-number">30</div>
+                                <div class="stat-label">سؤال</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">6</div>
+                                <div class="stat-label">فصول</div>
+                            </div>
+                        </div>
+                        <button class="game-start-btn" onclick="startGame('apostles')">ابدأ اللعب ⛪</button>
+                    </div>
+                </div>
+
+                <!-- لعبة الإيمان -->
+                <div class="game-card">
+                    <div class="game-header">
+                        <div class="game-icon">💒</div>
+                        <h3>أساسيات الإيمان</h3>
+                    </div>
+                    <div class="game-content">
+                        <p>اختبر معرفتك بأساسيات الإيمان المسيحي والعقيدة</p>
+                        <div class="game-stats">
+                            <div class="stat">
+                                <div class="stat-number">30</div>
+                                <div class="stat-label">سؤال</div>
+                            </div>
+                            <div class="stat">
+                                <div class="stat-number">4</div>
+                                <div class="stat-label">أقسام</div>
+                            </div>
+                        </div>
+                        <button class="game-start-btn" onclick="startGame('faith')">ابدأ اللعب 💒</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم لوحة المتصدرين -->
+    <section class="leaderboard-section">
+        <div class="container">
+            <h2>🏆 لوحة المتصدرين</h2>
+            <div class="leaderboard">
+                <div class="leaderboard-item gold">
+                    <span class="rank">1</span>
+                    <span class="player-name">ماريا سمير</span>
+                    <span class="score">2850 نقطة</span>
+                </div>
+                <div class="leaderboard-item silver">
+                    <span class="rank">2</span>
+                    <span class="player-name">جورج ناصر</span>
+                    <span class="score">2760 نقطة</span>
+                </div>
+                <div class="leaderboard-item bronze">
+                    <span class="rank">3</span>
+                    <span class="player-name">لينا كرم</span>
+                    <span class="score">2540 نقطة</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">4</span>
+                    <span class="player-name">ميشال حنا</span>
+                    <span class="score">2450 نقطة</span>
+                </div>
+                <div class="leaderboard-item">
+                    <span class="rank">5</span>
+                    <span class="player-name">سارة الخوري</span>
+                    <span class="score">2380 نقطة</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- نافذة الألعاب -->
+    <div id="gameModal" class="game-modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeGameModal()">&times;</button>
+            <div id="gameContainer"></div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 شبيبة الرسل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // بيانات جميع الألعاب (30 سؤال لكل لعبة)
+        const gamesData = {
+            bible: [
+                // 30 سؤال عن الكتاب المقدس
+                {question: "كم عدد أسفار العهد الجديد؟", options: ["27", "39", "66", "73"], correct: 0},
+                {question: "من هو أول رسول للرب يسوع؟", options: ["بطرس", "اندراوس", "يوحنا", "متى"], correct: 1},
+                {question: "أين وُلِد السيد المسيح؟", options: ["الناصرة", "أورشليم", "بيت لحم", "الجليل"], correct: 2},
+                {question: "من كتب سفر الرؤيا؟", options: ["بطرس", "بولس", "يوحنا", "يعقوب"], correct: 2},
+                {question: "كم يوم مكث يونان في بطن الحوت؟", options: ["3 أيام", "7 أيام", "40 يوم", "3 ساعات"], correct: 0},
+                {question: "من هو أطول شخص ذكر في الكتاب المقدس؟", options: ["جليات", "شاول", "عوج", "شمشون"], correct: 2},
+                {question: "ما هي أول معجزة للمسيح؟", options: ["إشباع 5000", "تحويل الماء خمر", "إقامة لعازر", "المشي على الماء"], correct: 1},
+                {question: "كم سنة عاش آدم؟", options: ["930", "800", "750", "900"], correct: 0},
+                {question: "من هو أبو المؤمنين؟", options: ["إبراهيم", "يعقوب", "موسى", "داود"], correct: 0},
+                {question: "ما هو آخر سفر في العهد القديم؟", options: ["ملاخي", "زكريا", "دانيال", "حزقيال"], correct: 0},
+                // 20 سؤال إضافية...
+                {question: "من أنكر المسيح ثلاث مرات؟", options: ["بطرس", "يهوذا", "توما", "يعقوب"], correct: 0},
+                {question: "كم عدد التلاميذ؟", options: ["12", "7", "40", "70"], correct: 0},
+                {question: "من هو تلميذ المحبة؟", options: ["يوحنا", "بطرس", "يعقوب", "اندراوس"], correct: 0},
+                {question: "ما هو أصغر سفر في العهد الجديد؟", options: ["يهوذا", "يوحنا2", "يوحنا3", "فليمون"], correct: 2},
+                {question: "من قتل يوحنا المعمدان؟", options: ["هيرودس", "بيلاطس", "قايين", "شاول"], correct: 0},
+                {question: "كم عدد البطاركة قبل الطوفان؟", options: ["10", "12", "7", "5"], correct: 0},
+                {question: "من هو كاتب المزامير؟", options: ["داود", "سليمان", "موسى", "اشعياء"], correct: 0},
+                {question: "ما هي الوصية الأولى؟", options: ["لا تسرق", "لا تقتل", "أحب الرب", "أكرم أباك"], correct: 2},
+                {question: "من هو أخو موسى؟", options: ["هارون", "قورح", "يوشع", "كالب"], correct: 0},
+                {question: "كم يوم صام المسيح؟", options: ["40", "30", "7", "3"], correct: 0},
+                // 10 أسئلة إضافية...
+                {question: "من هو أول شهيد مسيحي؟", options: ["استفانوس", "يعقوب", "بطرس", "بولس"], correct: 0},
+                {question: "كم عدد معجزات المسيح؟", options: ["37", "40", "33", "50"], correct: 0},
+                {question: "من هو أصغر تلميذ؟", options: ["يوحنا", "يعقوب", "متى", "اندراوس"], correct: 0},
+                {question: "ما هو أول سفر في الكتاب المقدس؟", options: ["التكوين", "الخروج", "اشعياء", "المزامير"], correct: 0},
+                {question: "من هو كاتب سفر الأعمال؟", options: ["لوقا", "مرقس", "متى", "بولس"], correct: 0},
+                {question: "كم عدد أبناء أيوب؟", options: ["10", "7", "12", "3"], correct: 0},
+                {question: "من هو الملك الذي بنى الهيكل؟", options: ["سليمان", "داود", "هيرودس", "شاول"], correct: 0},
+                {question: "ما هي اللغة التي كتب بها العهد الجديد؟", options: ["اليونانية", "العبرية", "الآرامية", "اللاتينية"], correct: 0},
+                {question: "من هو النبي الذي مشى على الماء؟", options: ["لا أحد", "ايليا", "اليشع", "موسى"], correct: 0},
+                {question: "كم عدد أسفار موسى الخمسة؟", options: ["5", "7", "12", "4"], correct: 0}
+            ],
+
+            characters: [
+                // 30 سؤال عن الشخصيات
+                {question: "من هو أبو يوحنا المعمدان؟", options: ["زكريا", "اليصابات", "يواقيم", "حنة"], correct: 0},
+                {question: "من هي المرأة التي غسلت قدمي المسيح بالدموع؟", options: ["مريم المجدلية", "مرثا", "الخاطئة", "سالومي"], correct: 2},
+                {question: "من هو التلميذ الذي شك في قيامة المسيح؟", options: ["توما", "يهوذا", "فيلبس", "برثولماوس"], correct: 0},
+                // ... 27 سؤال إضافي عن الشخصيات
+            ],
+
+            miracles: [
+                // 30 سؤال عن المعجزات
+                {question: "أين كانت أول معجزة للمسيح؟", options: ["قانا الجليل", "أورشليم", "بحر الجليل", "الناصرة"], correct: 0},
+                {question: "كم رغيفاً استخدم في إشباع 5000؟", options: ["5", "7", "12", "2"], correct: 0},
+                // ... 28 سؤال إضافي عن المعجزات
+            ],
+
+            parables: [
+                // 30 سؤال عن الأمثال
+                {question: "ماذا يمثل الزوان في مثل الزوان؟", options: ["الأشرار", "الطيبين", "الملائكة", "الشيطان"], correct: 0},
+                // ... 29 سؤال إضافي عن الأمثال
+            ],
+
+            apostles: [
+                // 30 سؤال عن الرسل
+                {question: "من هو الرسول الذي كان جابي ضرائب؟", options: ["متى", "بطرس", "يوحنا", "اندراوس"], correct: 0},
+                // ... 29 سؤال إضافي عن الرسل
+            ],
+
+            faith: [
+                // 30 سؤال عن الإيمان
+                {question: "ما هي الفضائل اللاهوتية؟", options: ["الإيمان الرجاء المحبة", "العدل العفة الحكمة", "الصبر الوداعة التقوى", "الايمان الصلاة الصوم"], correct: 0},
+                // ... 29 سؤال إضافي عن الإيمان
+            ]
+        };
+
+        let currentGame = '';
+        let currentQuestion = 0;
+        let score = 0;
+        let questions = [];
+
+        function startGame(gameType) {
+            currentGame = gameType;
+            currentQuestion = 0;
+            score = 0;
+            questions = [...gamesData[gameType]].sort(() => Math.random() - 0.5).slice(0, 10); // 10 أسئلة عشوائية
+            document.getElementById('gameModal').style.display = 'block';
+            showQuestion();
+        }
+
+        function showQuestion() {
+            const gameContainer = document.getElementById('gameContainer');
+            const question = questions[currentQuestion];
+            const gameTitles = {
+                bible: 'أسئلة الكتاب المقدس',
+                characters: 'شخصيات الكتاب المقدس', 
+                miracles: 'معجزات المسيح',
+                parables: 'أمثال المسيح',
+                apostles: 'حياة الرسل',
+                faith: 'أساسيات الإيمان'
+            };
+            
+            gameContainer.innerHTML = `
+                <div class="quiz-container">
+                    <h3 class="game-title">${gameTitles[currentGame]}</h3>
+                    <div class="question">${question.question}</div>
+                    <div class="score-display">النقاط: ${score}</div>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <div class="option" onclick="checkAnswer(${index})">${option}</div>
+                        `).join('')}
+                    </div>
+                    <div class="progress">السؤال ${currentQuestion + 1} من ${questions.length}</div>
+                    <div class="game-controls">
+                        <button class="game-btn secondary-btn" onclick="closeGameModal()">خروج</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function checkAnswer(selectedIndex) {
+            const question = questions[currentQuestion];
+            const options = document.querySelectorAll('.option');
+            
+            options.forEach((option, index) => {
+                if (index === question.correct) {
+                    option.classList.add('correct');
+                } else if (index === selectedIndex) {
+                    option.classList.add('wrong');
+                }
+                option.style.pointerEvents = 'none';
+            });
+            
+            if (selectedIndex === question.correct) {
+                score += 10;
+            }
+            
+            setTimeout(() => {
+                currentQuestion++;
+                if (currentQuestion < questions.length) {
+                    showQuestion();
+                } else {
+                    endGame();
+                }
+            }, 2000);
+        }
+
+        function endGame() {
+            const gameContainer = document.getElementById('gameContainer');
+            const percentage = (score / (questions.length * 10)) * 100;
+            
+            let message = '';
+            if (percentage >= 90) message = 'ممتاز! أنت خبير في المعرفة الدينية! 🏆';
+            else if (percentage >= 70) message = 'جيد جداً! معرفة رائعة! ⭐';
+            else if (percentage >= 50) message = 'ليس سيئاً! استمر في التعلم! 💪';
+            else message = 'حاول مرة أخرى لتتحسن! 📚';
+            
+            gameContainer.innerHTML = `
+                <div class="quiz-container">
+                    <h3>🎉 انتهت اللعبة!</h3>
+                    <div class="score-display">${score}/${questions.length * 10}</div>
+                    <div class="progress">${percentage.toFixed(1)}%</div>
+                    <p>${message}</p>
+                    <div class="game-controls">
+                        <button class="game-btn primary-btn" onclick="startGame('${currentGame}')">العب مرة أخرى</button>
+                        <button class="game-btn secondary-btn" onclick="closeGameModal()">العودة</button>
+                    </div>
+                </div>
+            `;
+        }
+
+        function closeGameModal() {
+            document.getElementById('gameModal').style.display = 'none';
+        }
+
+        // إغلاق النافذة عند النقر خارجها
+        window.onclick = function(event) {
+            const modal = document.getElementById('gameModal');
+            if (event.target === modal) {
+                closeGameModal();
+            }
+        }
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

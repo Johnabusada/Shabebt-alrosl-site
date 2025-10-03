@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اجتماعات شبيبة الرسل - برنامج الفعاليات</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تنسيقات خاصة بصفحة الاجتماعات */
+        .meetings-hero {
+            background: linear-gradient(rgba(52, 152, 219, 0.9), rgba(41, 128, 185, 0.9)), url('../images/meetings-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .category-tabs {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 70px;
+            z-index: 100;
+        }
+        
+        .tab-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .tab-btn {
+            padding: 12px 25px;
+            background: #f8f9fa;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        
+        .tab-btn.active {
+            background: var(--secondary-color);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .tab-content {
+            display: none;
+            padding: 40px 0;
+        }
+        
+        .tab-content.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .schedule-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            border-left: 5px solid var(--secondary-color);
+        }
+        
+        .schedule-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .meeting-time {
+            background: var(--gold-color);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+        
+        .meeting-details {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 15px;
+        }
+        
+        .detail-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .detail-item i {
+            color: var(--secondary-color);
+            width: 20px;
+        }
+        
+        .upcoming-events {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            padding: 60px 0;
+        }
+        
+        .event-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+        }
+        
+        .countdown {
+            font-size: 2rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/logo.png" alt="شبيبة الرسل" class="logo">
+                <a href="../index.html">شبيبة الرسل</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="bible-studies.html" class="nav-link">الكتاب المقدس</a></li>
+                <li class="nav-item"><a href="meetings.html" class="nav-link active">الاجتماعات</a></li>
+                <li class="nav-item"><a href="games.html" class="nav-link">الألعاب</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">عن الشبيبة</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم الهيدر -->
+    <section class="meetings-hero">
+        <div class="container">
+            <h1>برنامج الاجتماعات والفعاليات</h1>
+            <p class="hero-subtitle">"لا نترك اجتماعنا كما لقوم قوم" - عبرانيين 10: 25</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="total-meetings">24</div>
+                    <div class="stat-label">اجتماع شهري</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="active-members">180</div>
+                    <div class="stat-label">مشترك نشط</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="age-groups">5</div>
+                    <div class="stat-label">فئة عمرية</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التبويبات حسب الفئات -->
+    <section class="category-tabs">
+        <div class="container">
+            <div class="tab-buttons">
+                <button class="tab-btn active" data-tab="barameem">فئة البراعم (6-10 سنوات)</button>
+                <button class="tab-btn" data-tab="edadii">فئة الإعدادي (11-14 سنة)</button>
+                <button class="tab-btn" data-tab="thanawi">فئة الثانوي (15-18 سنة)</button>
+                <button class="tab-btn" data-tab="jame3i">فئة الجامعي (19-25 سنة)</button>
+                <button class="tab-btn" data-tab="3amila">فئة العاملة (26-35 سنة)</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى فئة البراعم -->
+    <section id="barameem" class="tab-content active">
+        <div class="container">
+            <div class="category-header">
+                <h2>فئة البراعم 🌟</h2>
+                <p>برنامج ممتع وتعليمي للأطفال من 6 إلى 10 سنوات</p>
+            </div>
+            
+            <div class="weekly-schedule">
+                <h3>الجدول الأسبوعي</h3>
+                
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h4>الجمعة - الاجتماع الرئيسي</h4>
+                        <span class="meeting-time">⏰ 4:00 - 5:30 مساءً</span>
+                    </div>
+                    <p>اجتماع أسبوعي يشمل قصص كتابية، أناشيد، ألعاب، وأنشطة تعليمية</p>
+                    <div class="meeting-details">
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>قاعة القديسة مريم</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-user"></i>
+                            <span>الخادم: الأخت سارة</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-phone"></i>
+                            <span>للتواصل: 0123456789</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h4>الأحد - مدرسة الأحد</h4>
+                        <span class="meeting-time">⏰ 10:00 - 11:30 صباحاً</span>
+                    </div>
+                    <p>درس كتابي تفاعلي مع أنشطة عملية ومسابقات</p>
+                    <div class="meeting-details">
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>قاعة البراعم</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-user"></i>
+                            <span>المعلمة: الأخت إيمان</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="monthly-activities">
+                <h3>فعاليات الشهر القادم</h3>
+                <div class="activities-grid">
+                    <div class="activity-card">
+                        <div class="activity-date">15 مارس</div>
+                        <h4>رحلة ترفيهية</h4>
+                        <p>رحلة إلى الحديقة العامة مع أنشطة ترفيهية</p>
+                    </div>
+                    <div class="activity-card">
+                        <div class="activity-date">22 مارس</div>
+                        <h4>مسابقة الأناشيد</h4>
+                        <p>مسابقة أناشيد بين مجموعات البراعم</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى فئة الإعدادي -->
+    <section id="edadii" class="tab-content">
+        <div class="container">
+            <div class="category-header">
+                <h2>فئة الإعدادي 🚀</h2>
+                <p>برنامج متكامل للشباب من 11 إلى 14 سنة</p>
+            </div>
+            
+            <div class="weekly-schedule">
+                <h3>الجدول الأسبوعي</h3>
+                
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h4>الجمعة - الاجتماع الشبابي</h4>
+                        <span class="meeting-time">⏰ 5:30 - 7:00 مساءً</span>
+                    </div>
+                    <p>دراسة كتابية متعمقة مع مناقشات وأنشطة تفاعلية</p>
+                    <div class="meeting-details">
+                        <div class="detail-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>قاعة الشباب</span>
+                        </div>
+                        <div class="detail-item">
+                            <i class="fas fa-user"></i>
+                            <span>الخادم: الأخ ميشيل</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h4>الثلاثاء - حلقة دراسة</h4>
+                        <span class="meeting-time">⏰ 4:00 - 5:30 مساءً</span>
+                    </div>
+                    <p>دراسة في مجموعات صغيرة مع مرشدين</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى فئة الثانوي -->
+    <section id="thanawi" class="tab-content">
+        <div class="container">
+            <div class="category-header">
+                <h2>فئة الثانوي 📚</h2>
+                <p>دعم ومرافقة خلال مرحلة الثانوية</p>
+            </div>
+            
+            <div class="weekly-schedule">
+                <h3>الجدول الأسبوعي</h3>
+                
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h4>السبت - الاجتماع الرئيسي</h4>
+                        <span class="meeting-time">⏰ 6:00 - 8:00 مساءً</span>
+                    </div>
+                    <p>لقاء أسبوعي يشمل دراسة وتخطيط وبناء علاقات</p>
+                </div>
+                
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h4>الأربعاء - جلسة دعم دراسي</h4>
+                        <span class="meeting-time">⏰ 3:00 - 5:00 مساءً</span>
+                    </div>
+                    <p>دروس تقوية ومساعدة في المواد الدراسية</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى فئة الجامعي -->
+    <section id="jame3i" class="tab-content">
+        <div class="container">
+            <div class="category-header">
+                <h2>فئة الجامعي 🎓</h2>
+                <p>برنامج خاص بطلاب الجامعات</p>
+            </div>
+            
+            <div class="weekly-schedule">
+                <h3>الجدول الأسبوعي</h3>
+                
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h4>الجمعة - اللقاء الجامعي</h4>
+                        <span class="meeting-time">⏰ 7:00 - 9:00 مساءً</span>
+                    </div>
+                    <p>لقاء أسبوعي مع محاضرات وورش عمل</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- محتوى فئة العاملة -->
+    <section id="3amila" class="tab-content">
+        <div class="container">
+            <div class="category-header">
+                <h2>فئة العاملة 💼</h2>
+                <p>برنامج للشباب العامل والمحترفين</p>
+            </div>
+            
+            <div class="weekly-schedule">
+                <h3>الجدول الأسبوعي</h3>
+                
+                <div class="schedule-card">
+                    <div class="schedule-header">
+                        <h4>الخميس - لقاء العاملين</h4>
+                        <span class="meeting-time">⏰ 7:30 - 9:30 مساءً</span>
+                    </div>
+                    <p>لقاء أسبوعي يناقش تحديات العمل والإيمان</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الفعاليات القادمة -->
+    <section class="upcoming-events">
+        <div class="container">
+            <h2>الفعاليات القادمة 🎉</h2>
+            
+            <div class="event-card">
+                <h3>مخيم الربيع 2024</h3>
+                <p>مخيم سنوي لجميع فئات الشبيبة في منطقة حرج الاوزاعي</p>
+                <div class="countdown" id="spring-camp-countdown"></div>
+                <button class="cta-button">سجل الآن</button>
+            </div>
+            
+            <div class="event-card">
+                <h3>يوم الشباب العالمي</h3>
+                <p>احتفالية خاصة بيوم الشباب العالمي</p>
+                <div class="countdown" id="youth-day-countdown"></div>
+                <button class="cta-button">المشاركة</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم التنزيلات -->
+    <section class="downloads-section">
+        <div class="container">
+            <h2>المواد والتنزيلات</h2>
+            <div class="downloads-grid">
+                <div class="download-card">
+                    <i class="fas fa-calendar-alt fa-3x"></i>
+                    <h3>برنامج الشهر</h3>
+                    <p>حمّل برنامج الفعاليات للشهر الحالي</p>
+                    <a href="#" class="download-btn">تحميل PDF</a>
+                </div>
+                
+                <div class="download-card">
+                    <i class="fas fa-book fa-3x"></i>
+                    <h3>دليل الدراسة</h3>
+                    <p>دليل دراسة الكتاب المقدس للشباب</p>
+                    <a href="#" class="download-btn">تحميل</a>
+                </div>
+                
+
+<div class="download-card">
+    <i class="fas fa-music fa-3x"></i>
+    <h3>كتاب الترانيم</h3>
+    <p>مجموعة الترانيم المستخدمة في الاجتماعات</p>
+    <a href="Downloadss/trateeell.zip" class="download-btn" download>تحميل</a>
+</section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 شبيبة الرسل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // نظام التبويبات
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-btn');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // إزالة النشاط من جميع الأزهار والمحتويات
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // إضافة النشاط للزر والمحتوى المحدد
+                    button.classList.add('active');
+                    const tabId = button.getAttribute('data-tab');
+                    document.getElementById(tabId).classList.add('active');
+                });
+            });
+            
+            // عداد التنازل للفعاليات
+            function updateCountdown() {
+                const springCampDate = new Date('2024-03-15').getTime();
+                const youthDayDate = new Date('2024-08-12').getTime();
+                const now = new Date().getTime();
+                
+                const springCampDiff = springCampDate - now;
+                const youthDayDiff = youthDayDate - now;
+                
+                const days = (diff) => Math.floor(diff / (1000 * 60 * 60 * 24));
+                
+                document.getElementById('spring-camp-countdown').textContent = 
+                    `${days(springCampDiff)} يوم متبقي`;
+                document.getElementById('youth-day-countdown').textContent = 
+                    `${days(youthDayDiff)} يوم متبقي`;
+            }
+            
+            updateCountdown();
+            setInterval(updateCountdown, 86400000); // تحديث يومي
+        });
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>
