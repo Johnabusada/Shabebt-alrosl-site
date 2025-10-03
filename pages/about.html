@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عن شبيبة الرسل - تاريخنا ورسالتنا</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تنسيقات خاصة بصفحة عن الشبيبة */
+        .about-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.9), rgba(52, 152, 219, 0.9)), url('../images/about-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .intro-section {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .intro-content {
+            max-width: 900px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .intro-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 30px;
+        }
+        
+        .mission-vision {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .mission-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        
+        .mission-card {
+            background: white;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            border-top: 5px solid var(--gold-color);
+        }
+        
+        /* الخط الزمني المعدل - في المنتصف */
+        .timeline-section {
+            padding: 80px 0;
+            background: white;
+            position: relative;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 60px auto 0;
+            padding: 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(to bottom, var(--secondary-color), var(--gold-color));
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin: 80px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .timeline-year {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--secondary-color);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            z-index: 2;
+            box-shadow: 0 6px 20px rgba(52, 152, 219, 0.4);
+            white-space: nowrap;
+            top: -15px;
+        }
+        
+        .timeline-content {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            width: 45%;
+            position: relative;
+            border-top: 4px solid var(--gold-color);
+            margin-top: 40px;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content {
+            margin-right: auto;
+            margin-left: 2%;
+            text-align: right;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content {
+            margin-left: auto;
+            margin-right: 2%;
+            text-align: left;
+        }
+        
+        .timeline-item:nth-child(odd) .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            left: -10px;
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-right: 12px solid white;
+        }
+        
+        .timeline-item:nth-child(even) .timeline-content::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            right: -10px;
+            width: 0;
+            height: 0;
+            border-top: 12px solid transparent;
+            border-bottom: 12px solid transparent;
+            border-left: 12px solid white;
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .timeline-content p {
+            line-height: 1.7;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        .timeline-tag {
+            display: inline-block;
+            background: var(--gold-color);
+            color: white;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 1rem;
+            font-weight: 500;
+        }
+        
+        /* نقطة الاتصال مع الخط */
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 25px;
+            transform: translateX(-50%);
+            width: 24px;
+            height: 24px;
+            background: white;
+            border: 5px solid var(--secondary-color);
+            border-radius: 50%;
+            z-index: 2;
+            box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        }
+        
+        .gallery-section {
+            padding: 80px 0;
+            background: #f8f9fa;
+        }
+        
+        .gallery-container {
+            position: relative;
+            max-width: 1000px;
+            margin: 40px auto;
+        }
+        
+        .gallery-slider {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .gallery-slider::-webkit-scrollbar {
+            display: none;
+        }
+        
+        .gallery-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: start;
+            position: relative;
+        }
+        
+        .gallery-image {
+            width: 100%;
+            height: 500px;
+            object-fit: cover;
+        }
+        
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.8));
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .gallery-nav {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #ddd;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-dot.active {
+            background: var(--secondary-color);
+            transform: scale(1.2);
+        }
+        
+        .former-leaders {
+            padding: 80px 0;
+            background: white;
+        }
+        
+        .leaders-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .leader-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .leader-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .leader-image {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+        }
+        
+        .leader-info {
+            padding: 25px;
+        }
+        
+        .stats-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+        
+        .stat-circle {
+            width: 120px;
+            height: 120px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            position: relative;
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease;
+        }
+        
+        /* التصميم المتجاوب */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+            
+            .timeline-item {
+                margin: 60px 0;
+                justify-content: flex-start;
+                padding-left: 60px;
+            }
+            
+            .timeline-year {
+                left: 30px;
+                transform: translateX(-50%);
+            }
+            
+            .timeline-content {
+                width: 100%;
+                margin: 40px 0 0 0 !important;
+                text-align: right !important;
+            }
+            
+            .timeline-item:nth-child(odd) .timeline-content::before,
+            .timeline-item:nth-child(even) .timeline-content::before {
+                left: -10px;
+                right: auto;
+                border-left: none;
+                border-right: 10px solid white;
+                border-top: 10px solid transparent;
+                border-bottom: 10px solid transparent;
+            }
+            
+            .timeline-item::after {
+                left: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/logo.png" alt="شبيبة الرسل" class="logo">
+                <a href="../index.html">شبيبة الرسل</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="bible-studies.html" class="nav-link">الكتاب المقدس</a></li>
+                <li class="nav-item"><a href="meetings.html" class="nav-link">الاجتماعات</a></li>
+                <li class="nav-item"><a href="activities.html" class="nav-link">النشاطات</a></li>
+                <li class="nav-item"><a href="games.html" class="nav-link">الألعاب</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link active">عن الشبيبة</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم الهيدر -->
+    <section class="about-hero">
+        <div class="container">
+            <h1>شبيبة الرسل ⚓</h1>
+            <p class="hero-subtitle">"نَحْنُ جِيلٌ يَعِيشُ بِالإِيمَانِ، وَيَسِيرُ بِالرَّجَاءِ، وَيَعْمَلُ بِالْمَحَبَّةِ"</p>
+            <div class="hero-stats">
+                <div class="stat-item">
+                    <div class="stat-number">25+</div>
+                    <div class="stat-label">سنة من العطاء</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">شاب وشابة</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">200+</div>
+                    <div class="stat-label">فعالية سنوية</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- فقرة عن شبيبة الرسل -->
+    <section class="intro-section">
+        <div class="container">
+            <div class="intro-content">
+                <h2>من نحن؟ 🌟</h2>
+                <div class="intro-text">
+                    <p>شبيبة الرسل هي حركة شبابية مسيحية تابعة لكنيسة الروم الكاثوليك، تأسست عام 1998 برؤية طموحة لبناء جيل مسيحي واعي ومؤثر. نحن مجموعة من الشباب المتحمسين الذين يجمعهم الإيمان بالمسيح والسعي لخدمة الكنيسة والمجتمع.</p>
+                    
+                    <p>على مدى أكثر من 25 عاماً، استطعنا بناء مجتمع شبابي متماسك يضم مختلف الفئات العمرية من البراعم حتى الشباب العامل. نؤمن بأن الشباب هم عماد الكنيسة وقادة المستقبل، لذلك نسعى لتوفير بيئة آمنة ومحفزة للنمو الروحي والاجتماعي.</p>
+                    
+                    <p>من خلال برامجنا المتنوعة التي تشمل الدراسة الكتابية، اللقاءات الأسبوعية، المخيمات، والأنشطة الاجتماعية، نساعد كل شاب وشابة على اكتشاف مواهبهم وتطويرها ليكونوا شهوداً حقيقيين للمسيح في عالم اليوم.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الرسالة والرؤية -->
+    <section class="mission-vision">
+        <div class="container">
+            <h2>رسالتنا ورؤيتنا وقيمنا 💫</h2>
+            <div class="mission-grid">
+                <div class="mission-card fade-in">
+                    <i class="fas fa-bullseye fa-3x" style="color: var(--secondary-color); margin-bottom: 20px;"></i>
+                    <h3>رسالتنا</h3>
+                    <p>بناء جيل مسيحي واعي، متجذر في الإيمان، منطلق بالخدمة، مؤثر في المجتمع، حاملٌ لقيم المحبة والسلام التي علمنا إياها السيد المسيح.</p>
+                </div>
+                <div class="mission-card fade-in">
+                    <i class="fas fa-eye fa-3x" style="color: var(--gold-color); margin-bottom: 20px;"></i>
+                    <h3>رؤيتنا</h3>
+                    <p>أن نكون بيتاً روحياً لكل شاب وشابة، نعمل معاً لبناء مجتمع مسيحي متكامل، حيث ينمو كل فرد في علاقته مع الله ويخدم كنيسة المسيح.</p>
+                </div>
+                <div class="mission-card fade-in">
+                    <i class="fas fa-heart fa-3x" style="color: var(--accent-color); margin-bottom: 20px;"></i>
+                    <h3>قيمنا</h3>
+                    <p>الإيمان، المحبة، الخدمة، الوحدة، النمو الروحي، الإبداع، التميز، التأثير الإيجابي في المجتمع.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- الخط الزمني -->
+    <section class="timeline-section">
+        <div class="container">
+            <h2>رحلة شبيبة الرسل عبر الزمن 🕰️</h2>
+            <div class="timeline">
+                <!-- 1998 -->
+                <div class="timeline-item">
+                    <div class="timeline-year">١٩٩٨</div>
+                    <div class="timeline-content">
+                        <h3>البداية</h3>
+                        <p>تأسيس شبيبة الرسل بمباركة قدسية من الأب العام، بمشاركة 20 شاباً فقط في أول اجتماع.</p>
+                        <span class="timeline-tag">🌱 البذرة الأولى</span>
+                    </div>
+                </div>
+                
+                <!-- 2005 -->
+                <div class="timeline-item">
+                    <div class="timeline-year">٢٠٠٥</div>
+                    <div class="timeline-content">
+                        <h3>التوسع</h3>
+                        <p>انضمام فئة البراعم والإعدادي، وزيادة عدد المنتسبين إلى 150 شاباً وشابة.</p>
+                        <span class="timeline-tag">📈 مرحلة النمو</span>
+                    </div>
+                </div>
+                
+                <!-- 2010 -->
+                <div class="timeline-item">
+                    <div class="timeline-year">٢٠١٠</div>
+                    <div class="timeline-content">
+                        <h3>المخيم الأول</h3>
+                        <p>تنظيم أول مخيم سنوي في منطقة الشوف بمشاركة 80 شاباً، ليصبح تقليداً سنوياً.</p>
+                        <span class="timeline-tag">🏕️ انطلاق التقاليد</span>
+                    </div>
+                </div>
+                
+                <!-- 2015 -->
+                <div class="timeline-item">
+                    <div class="timeline-year">٢٠١٥</div>
+                    <div class="timeline-content">
+                        <h3>التميز</h3>
+                        <p>فوز الشبيبة بجائزة أفضل نشاط شبابي على مستوى المنطقة.</p>
+                        <span class="timeline-tag">🏆 تتويج الإنجازات</span>
+                    </div>
+                </div>
+                
+                <!-- 2020 -->
+                <div class="timeline-item">
+                    <div class="timeline-year">٢٠٢٠</div>
+                    <div class="timeline-content">
+                        <h3>التكيف الرقمي</h3>
+                        <p>تحول الأنشطة إلى المنصات الرقمية خلال الجائحة، ووصول تأثير الشبيبة إلى آفاق جديدة.</p>
+                        <span class="timeline-tag">💻 عصر رقمي جديد</span>
+                    </div>
+                </div>
+                
+                <!-- 2024 -->
+                <div class="timeline-item">
+                    <div class="timeline-year">٢٠٢٤</div>
+                    <div class="timeline-content">
+                        <h3>المستقبل</h3>
+                        <p>إطلاق الموقع الإلكتروني وتوسيع قاعدة المستفيدين إلى أكثر من 500 شاب وشابة.</p>
+                        <span class="timeline-tag">🚀 نحو المستقبل</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- معرض الصور -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2>ذاكرة الشبيبة في صور 📸</h2>
+            <p class="section-description">لحظات خالدة من رحلتنا عبر السنين</p>
+            
+            <div class="gallery-container">
+                <div class="gallery-slider" id="gallerySlider">
+                    <!-- صورة 1 -->
+                    <div class="gallery-slide">
+                        <img src="Images about/first image .png" alt="   " class="gallery-image">
+                        <div class="slide-caption">
+                            <h3>يسوع فرحي 1 </h3>
+                            <p>أول لقاء تنضمه شبيبة الرسل يسوع فرحي </p>
+                        </div>
+                    </div>
+                    
+                    <!-- صورة 2 -->
+                    <div class="gallery-slide">
+                        <img src="Images about/Second Image .png" alt="يسوع فرحي 2" class="gallery-image">
+                        <div class="slide-caption">
+                            <h3>يسوع فرحي 2 </h3>
+                            <p>تعيد شبيبة الرسل المسيرة وتحتفل باللقاء الثاني على التوالي </p>
+                        </div>
+                    </div>
+                    
+                    <!-- صورة 3 -->
+                    <div class="gallery-slide">
+                        <img src="../images/gallery/group-3.jpg" alt="الخلوة الروحية" class="gallery-image">
+                        <div class="slide-caption">
+                            <h3>الخلوة الروحية 2020</h3>
+                            <p>خلوة روحية في دير السيدة بعنوان "النمو في النعمة"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="gallery-nav" id="galleryNav">
+                    <!-- سيتم إضافة النقاط عبر JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- المسؤولون السابقون -->
+    <section class="former-leaders">
+        <div class="container">
+            <h2>قادة رحلة العطاء 👑</h2>
+            <p class="section-description">مسؤولون سابقون قدموا سنوات من العطاء للشبيبة</p>
+            
+            <div class="leaders-grid">
+                <!-- المسؤول 1 -->
+                <div class="leader-card fade-in">
+                    <img src="../images/leaders/leader-1.jpg" alt="المسؤول الأول" class="leader-image">
+                    <div class="leader-info">
+                        <h3>الأخ جورج حنا</h3>
+                        <p class="leader-period">١٩٩٨ - ٢٠٠٥</p>
+                        <p>مؤسس الشبيبة وأول مسؤول عام، وضع الأسس الأولى للعمل الشبابي.</p>
+                    </div>
+                </div>
+                
+                <!-- المسؤول 2 -->
+                <div class="leader-card fade-in">
+                    <img src="../images/leaders/leader-2.jpg" alt="المسؤول الثاني" class="leader-image">
+                    <div class="leader-info">
+                        <h3>الأخت ماري القزي</h3>
+                        <p class="leader-period">٢٠٠٥ - ٢٠١٢</p>
+                        <p>قادت مرحلة التوسع الكبرى وأدخلت نظام الفئات العمرية.</p>
+                    </div>
+                </div>
+                
+                <!-- المسؤول 3 -->
+                <div class="leader-card fade-in">
+                    <img src="../images/leaders/leader-3.jpg" alt="المسؤول الثالث" class="leader-image">
+                    <div class="leader-info">
+                        <h3>الأخ وسام خوري</h3>
+                        <p class="leader-period">٢٠١٢ - ٢٠٢٠</p>
+                        <p>قاد الشبيبة نحو التميز وحصولها على جوائز محلية.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- إحصائيات -->
+    <section class="stats-section">
+        <div class="container">
+            <h2>أرقامنا تتحدث 📊</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-circle">
+                        <div class="stat-number">25</div>
+                    </div>
+                    <div class="stat-label">سنة من العطاء</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle">
+                        <div class="stat-number">500+</div>
+                    </div>
+                    <div class="stat-label">شاب وشابة</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle">
+                        <div class="stat-number">150+</div>
+                    </div>
+                    <div class="stat-label">فعالية سنوية</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-circle">
+                        <div class="stat-number">50+</div>
+                    </div>
+                    <div class="stat-label">خادم نشط</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 شبيبة الرسل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // معرض الصور
+        document.addEventListener('DOMContentLoaded', function() {
+            const slider = document.getElementById('gallerySlider');
+            const nav = document.getElementById('galleryNav');
+            const slides = document.querySelectorAll('.gallery-slide');
+            
+            // إنشاء نقاط التنقل
+            slides.forEach((slide, index) => {
+                const dot = document.createElement('div');
+                dot.className = 'nav-dot';
+                if (index === 0) dot.classList.add('active');
+                dot.addEventListener('click', () => goToSlide(index));
+                nav.appendChild(dot);
+            });
+            
+            function goToSlide(index) {
+                slider.scrollTo({
+                    left: slider.offsetWidth * index,
+                    behavior: 'smooth'
+                });
+                updateDots(index);
+            }
+            
+            function updateDots(activeIndex) {
+                document.querySelectorAll('.nav-dot').forEach((dot, index) => {
+                    dot.classList.toggle('active', index === activeIndex);
+                });
+            }
+            
+            // التمرير التلقائي
+            let currentSlide = 0;
+            setInterval(() => {
+                currentSlide = (currentSlide + 1) % slides.length;
+                goToSlide(currentSlide);
+            }, 5000);
+        });
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>

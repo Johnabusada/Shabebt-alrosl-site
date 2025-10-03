@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>دراسة الكتاب المقدس - شبيبة الرسل</title>
+    <link rel="stylesheet" href="../style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* تنسيقات إضافية خاصة بصفحة الكتاب المقدس */
+        .bible-hero {
+            background: linear-gradient(rgba(44, 62, 80, 0.8), rgba(44, 62, 80, 0.9)), url('../images/bible-bg.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+        }
+        
+        .study-categories {
+            padding: 60px 0;
+            background: #f8f9fa;
+        }
+        
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .category-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-icon {
+            font-size: 3rem;
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+        
+        .daily-reading {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        
+        .reading-box {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px auto;
+            max-width: 800px;
+        }
+        
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .resource-card {
+            background: white;
+            border: 2px solid #f1f1f1;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            border-color: #3498db;
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+<body>
+    <!-- شريط التنقل -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <img src="../images/logo.png" alt="شبيبة الرسل" class="logo">
+                <a href="../index.html">شبيبة الرسل</a>
+            </div>
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="bible-studies.html" class="nav-link active">الكتاب المقدس</a></li>
+                <li class="nav-item"><a href="meetings.html" class="nav-link">الاجتماعات</a></li>
+                <li class="nav-item"><a href="games.html" class="nav-link">الألعاب </a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">عن الشبيبة</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تواصل معنا</a></li>
+            </ul>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- قسم الهيدر -->
+    <section class="bible-hero">
+        <div class="container">
+            <h1>دراسة الكتاب المقدس</h1>
+            <p class="hero-subtitle">"كلمتك سراج لرجلي ونور لسبيلي" - مزمور 119: 105</p>
+            <div class="search-box">
+                <input type="text" id="verse-search" placeholder="ابحث عن آية أو موضوع...">
+                <button onclick="searchBible()"><i class="fas fa-search"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم القراءة اليومية -->
+    <section class="daily-reading">
+        <div class="container">
+            <h2>القراءة اليومية</h2>
+            <div class="reading-box">
+                <h3 id="daily-verse">"لأنه هكذا أحب الله العالم حتى بذل ابنه الوحيد لكي لا يهلك كل من يؤمن به بل تكون له الحياة الأبدية"</h3>
+                <p id="daily-reference">يوحنا 3: 16</p>
+                <button class="cta-button" onclick="randomVerse()">آية عشوائية</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم أساليب الدراسة -->
+    <section class="study-categories">
+        <div class="container">
+            <h2>أساليب دراسة الكتاب المقدس</h2>
+            <div class="category-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <h3>الدراسة الفردية</h3>
+                    <p>تعلم كيفية دراسة الكتاب المقدس بشكل شخصي ومنظم</p>
+                    <ul>
+                        <li>طريقة SOAP (الكتابة، الملاحظة، التطبيق، الصلاة)</li>
+                        <li>دراسة حسب المواضيع</li>
+                        <li>دراسة شخصيات الكتاب المقدس</li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>الدراسة الجماعية</h3>
+                    <p>موارد للدراسة في مجموعات صغيرة</p>
+                    <ul>
+                        <li>دلائل دراسة للشباب</li>
+                        <li>أسئلة للمناقشة</li>
+                        <li>أنشطة تفاعلية</li>
+                    </ul>
+                </div>
+                
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3>دراسات متعمقة</h3>
+                    <p>دراسات مفصلة للراغبين في التعمق</p>
+                    <ul>
+                        <li>دراسة الكتب كاملة</li>
+                        <li>دراسات لاهوتية</li>
+                        <li>دراسات تاريخية</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الموارد الإلكترونية -->
+    <section class="resources-section">
+        <div class="container">
+            <h2>الموارد الإلكترونية</h2>
+            <div class="resources-grid">
+                <div class="resource-card">
+                    <i class="fas fa-mobile-alt fa-3x"></i>
+                    <h3>تطبيقات الكتاب المقدس</h3>
+                    <p>أفضل التطبيقات لدراسة الكتاب المقدس</p>
+                    <a href="#" class="resource-link">استكشف</a>
+                </div>
+                
+                <div class="resource-card">
+                    <i class="fas fa-video fa-3x"></i>
+                    <h3>فيديوهات تعليمية</h3>
+                    <p>سلسلات فيديو لشرح الكتاب المقدس</p>
+                    <a href="#" class="resource-link">شاهد</a>
+                </div>
+                
+                <div class="resource-card">
+                    <i class="fas fa-podcast fa-3x"></i>
+                    <h3>بودكاست</h3>
+                    <p>برامج صوتية للاستماع اليومي</p>
+                    <a href="#" class="resource-link">استمع</a>
+                </div>
+                
+                <div class="resource-card">
+                    <i class="fas fa-book fa-3x"></i>
+                    <h3>مكتبة رقمية</h3>
+                    <p>كتب ومراجع للتحميل</p>
+                    <a href="#" class="resource-link">تصفح</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم خطط القراءة -->
+    <section class="reading-plans">
+        <div class="container">
+            <h2>خطط القراءة</h2>
+            <div class="plans-grid">
+                <div class="plan-card">
+                    <h3>خطة السنة</h3>
+                    <p>اقرأ الكتاب المقدس كاملاً في سنة</p>
+                    <div class="plan-progress">
+                        <div class="progress-bar" style="width: 25%"></div>
+                    </div>
+                    <button class="plan-btn">ابدأ القراءة</button>
+                </div>
+                
+                <div class="plan-card">
+                    <h3>خطة 90 يوم</h3>
+                    <p>اقرأ العهد الجديد في 3 أشهر</p>
+                    <div class="plan-progress">
+                        <div class="progress-bar" style="width: 10%"></div>
+                    </div>
+<a href="reading-plan.html" class="plan-btn">ابدأ القراءة</a>
+                </div>
+                
+                <div class="plan-card">
+                    <h3>خطة المواضيع</h3>
+                    <p>دراسة مواضيع محددة</p>
+                    <div class="plan-progress">
+                        <div class="progress-bar" style="width: 5%"></div>
+                    </div>
+                    <button class="plan-btn">ابدأ القراءة</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- قسم الأسئلة الشائعة -->
+    <section class="faq-section">
+        <div class="container">
+            <h2>أسئلة شائعة عن دراسة الكتاب المقدس</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h3>كيف أبدأ دراسة الكتاب المقدس؟</h3>
+                    <p>ابدأ بالعهد الجديد، إنجيل مرقس هو نقطة بداية رائعة. خصص 15 دقيقة يومياً للقراءة والصلاة.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>ما هي أفضل ترجمة للكتاب المقدس؟</h3>
+                    <p>ترجمة الفانديك للقراءة العامة، والترجمة العربية المشتركة للدراسة المتعمقة.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>كيف أفهم الصعوبات في النص؟</h3>
+                    <p>استخدم تفاسير موثوقة، واستشر قادة روحيين، وادرس السياق التاريخي للنص.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2023 شبيبة الرسل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // آيات عشوائية للقراءة اليومية
+        const verses = [
+            { text: "لأني عارف Thoughts التي أنا مفتكر بها عنكم يقول الرب thoughts سلام لا شر لإعطيكم آخرة ورجاء", reference: "إرميا 29: 11" },
+            { text: "ثق بالرب بكل قلبك وعلى فهمك لا تعتمد في كل طرقك اعهده وهو يقوم", reference: "أمثال 3: 5-6" },
+            { text: "كل الأشياء تعمل معا للخير للذين يحبون الله الذين هم مدعوون حسب قصده", reference: "رومية 8: 28" },
+            { text: "أستطيع كل شيء في المسيح الذي يقويني", reference: "فيلبي 4: 13" },
+            { text: "لا تهتموا بشيء بل في كل شيء بالصلاة والدعاء مع الشكر لتعلم طلباتكم لله", reference: "فيلبي 4: 6" }
+        ];
+
+        function randomVerse() {
+            const randomIndex = Math.floor(Math.random() * verses.length);
+            document.getElementById('daily-verse').textContent = `"${verses[randomIndex].text}"`;
+            document.getElementById('daily-reference').textContent = verses[randomIndex].reference;
+        }
+
+        function searchBible() {
+            const query = document.getElementById('verse-search').value;
+            if (query.trim() !== '') {
+                alert(`سيتم البحث عن: ${query}\nهذه الميزة قيد التطوير`);
+                // يمكن إضافة البحث الحقيقي هنا لاحقاً
+            }
+        }
+
+        // تفعيل البحث عند الضغط على Enter
+        document.getElementById('verse-search').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchBible();
+            }
+        });
+
+        // تحميل آية عشوائية عند فتح الصفحة
+        document.addEventListener('DOMContentLoaded', randomVerse);
+    </script>
+    <script src="../script.js"></script>
+</body>
+</html>
