@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>البودكاست - شبيبة الرسل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles - باستخدام الهيدر الموجود */
+        header {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .nav-item a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+        }
+
+        .nav-item a:hover,
+        .nav-item a.active {
+            background: rgba(255,255,255,0.2);
+            color: #ffd700;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1478737270239-2f02b77fc618?ixlib=rb-4.0.3&auto=format&fit=crop&w=2000&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            max-width: 600px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Episodes Section */
+        .episodes-section {
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #2c3e50;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            margin: 15px auto;
+            border-radius: 2px;
+        }
+
+        .episodes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 40px;
+        }
+
+        .episode-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .episode-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .episode-video {
+            width: 100%;
+            height: 250px;
+            background: #2c3e50;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .episode-video iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .video-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .video-placeholder i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #ffd700;
+        }
+
+        .episode-content {
+            padding: 25px;
+        }
+
+        .episode-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .episode-number {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+        }
+
+        .episode-title {
+            font-size: 1.4rem;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            line-height: 1.4;
+        }
+
+        .episode-description {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+            max-height: 80px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .episode-description::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 20px;
+            background: linear-gradient(transparent, white);
+        }
+
+        .play-button {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            width: 100%;
+            justify-content: center;
+        }
+
+        .play-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(26, 42, 108, 0.3);
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #1a2a6c, #2c3e50);
+            color: white;
+            padding: 50px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            padding: 0 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #ffd700;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            line-height: 1.8;
+        }
+
+        .footer-section a:hover {
+            color: #ffd700;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            background: #ffd700;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            margin-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #ccc;
+        }
+
+        /* Video Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            background: red;
+            color: white;
+            border: none;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .episodes-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .modal-content {
+                max-width: 95%;
+                max-height: 95%;
+            }
+
+            .close-modal {
+                top: -30px;
+                left: -30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="nav-container">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="../index.html" class="nav-link">الرئيسية</a></li>
+                <li class="nav-item"><a href="bible-studies.html" class="nav-link">الكتاب المقدس</a></li>
+                <li class="nav-item"><a href="meetings.html" class="nav-link">الاجتماعات</a></li>
+                <li class="nav-item"><a href="games.html" class="nav-link">الألعاب</a></li>
+                <li class="nav-item"><a href="podcast.html" class="nav-link active">البودكاست</a></li>
+                <li class="nav-item"><a href="about.html" class="nav-link">عن الشبيبة</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">تواصل معنا</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>بودكاست الرسل</h2>
+            <p>مساحتنا نحكي عن مواضيع بتلامس حياتنا الروحية والشبابية</p>
+        </div>
+    </section>
+
+    <!-- Episodes Section -->
+    <section class="episodes-section" id="episodes">
+        <h2 class="section-title">حلقات البودكاست</h2>
+        <div class="episodes-grid" id="episodesContainer">
+            <!-- الحلقات تُضاف هنا بالJavaScript -->
+        </div>
+    </section>
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="modal">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">×</button>
+            <div id="modalVideo"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>عن شبيبة الرسل</h3>
+                <p>مجتمع شبابي يهدف إلى تعزيز الحياة الروحية وبناء جيل مسيحي واعي.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>روابط سريعة</h3>
+                <p><a href="../index.html">الرئيسية</a></p>
+                <p><a href="bible-studies.html">الكتاب المقدس</a></p>
+                <p><a href="meetings.html">الاجتماعات</a></p>
+                <p><a href="podcast.html">البودكاست</a></p>
+            </div>
+            
+<div class="footer-section">
+    <h3>تابعنا</h3>
+    <div class="social-links">
+        <a href="https://www.facebook.com/shabebet.alrosol/" target="_blank" rel="noopener">
+            <i class="fab fa-facebook-f"></i>
+        </a>
+        <a href="https://www.instagram.com/shabebet.alrosol/" target="_blank" rel="noopener">
+            <i class="fab fa-instagram"></i>
+        </a>
+    </div>
+</div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 شبيبة الرسل. جميع الحقوق محفوظة.</p>
+        </div>
+    </footer>
+
+    <script>
+        // بيانات الحلقات مع روابط الفيسبوك الحقيقية
+        const podcastEpisodes = [
+            {
+                number: "الحلقة 1",
+                title: "الصلاة وتأثيرها في حياتنا اليومية",
+                description: "ضيفتنا الرائعة نور دحابرة – عضو لجنة الثانوي – تشاركنا كيف بتأثر الصلاة في حياتنا اليومية. والتقديم مع المتألقة تالا مرجي – عضو فئة الثانوي.",
+                date: "24/7/2025",
+                facebookUrl: "https://www.facebook.com/share/v/1DAuwSW1dR/",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1DAuwSW1dR%2F&show_text=0&width=560"
+            },
+            {
+                number: "الحلقة 2", 
+                title: "الثالوث الأقدس - سر الإيمان المسيحي",
+                description: "ضيفنا المميز إبراهيم مسلم – ابن شبيبة الرسل – يشاركنا فهمه وتجربته مع سر الثالوث الأقدس. والتقديم مع المتألقة رنيم سمردلي.",
+                date: " 12/8/2025 ",
+                facebookUrl: "https://www.facebook.com/share/v/17QXpbazg7/",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F17QXpbazg7%2F&show_text=0&width=560"
+            },
+            {
+                number: "الحلقة 3",
+                title: "المسامحة والغفران - شفاء القلوب",
+                description: "ضيفتنا المميزة ماريا قندح تحكي عن كيف المسامحة ممكن تشفي قلوبنا وتحررنا من ثقل الغضب. والتقديم مع المتألق مجد حداد.",
+                date: "16/9/2025",
+                facebookUrl: "https://www.facebook.com/share/v/1ZLexmqMuA/",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1ZLexmqMuA%2F&show_text=0&width=560"
+            },
+            {
+                number: "الحلقة 4",
+                title: "الشبيبة، الخدمة والعمل الجماعي",
+                description: "ضيفنا المسؤول العام حازم حداد يحكي عن دور الشبيبة وكيف من خلال الخدمة والعمل مع بعض منقدر نحقق رسالة كبيرة. والتقديم مع المتألقة ڤيڤيان حداد.",
+                date: "2/10/2025 ",
+                facebookUrl: "https://www.facebook.com/share/v/1JAuUq2sEQ/",
+                embedUrl: "https://www.facebook.com/plugins/video.php?href=https%3A%2F%2Fwww.facebook.com%2Fshare%2Fv%2F1JAuUq2sEQ%2F&show_text=0&width=560"
+            }
+        ];
+
+        // عرض الحلقات
+        function displayEpisodes() {
+            const container = document.getElementById('episodesContainer');
+            container.innerHTML = '';
+            
+            podcastEpisodes.forEach((episode, index) => {
+                const episodeCard = `
+                    <div class="episode-card">
+                        <div class="episode-video">
+                            <div class="video-placeholder">
+                                <i class="fab fa-facebook"></i>
+                                <div>بودكاست الرسل - ${episode.number}</div>
+                                <small>انقر لمشاهدة الحلقة على الفيسبوك</small>
+                            </div>
+                        </div>
+                        <div class="episode-content">
+                            <div class="episode-meta">
+                                <span class="episode-number">${episode.number}</span>
+                                <span class="episode-date">${episode.date}</span>
+                            </div>
+                            <h3 class="episode-title">${episode.title}</h3>
+                            <p class="episode-description">${episode.description}</p>
+                            <button class="play-button" onclick="playEpisode(${index})">
+                                <i class="fas fa-play"></i>
+                                شاهد الحلقة
+                            </button>
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += episodeCard;
+            });
+        }
+
+        // تشغيل الحلقة
+        function playEpisode(episodeIndex) {
+            const episode = podcastEpisodes[episodeIndex];
+            
+            // فتح الحلقة في نافذة جديدة
+            window.open(episode.facebookUrl, '_blank');
+        }
+
+        // إغلاق النافذة المنبثقة
+        function closeModal() {
+            document.getElementById('videoModal').style.display = 'none';
+            document.getElementById('modalVideo').innerHTML = '';
+        }
+
+        // تشغيل العرض عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', displayEpisodes);
+
+        // إغلاق النافذة عند الضغط على ESC
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>

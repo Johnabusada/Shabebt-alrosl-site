@@ -1,0 +1,801 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خطة القراءة السنوية - شبيبة الرسل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Reset & Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #8B4513;
+            --secondary: #D2691E;
+            --accent: #F4A460;
+            --light: #FFF8DC;
+            --dark: #5D4037;
+            --gold: #B8860B;
+            --cream: #FAF0E6;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #FAF0E6 0%, #FFF8DC 100%);
+            color: #5D4037;
+            line-height: 1.7;
+        }
+
+        /* Elegant Header */
+        .elegant-header {
+            background: rgba(255, 248, 220, 0.95);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 30px rgba(139, 69, 19, 0.1);
+        }
+
+        .header-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 40px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .logo-text {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--primary);
+            letter-spacing: -0.5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--dark);
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .nav-links a:hover {
+            background: rgba(139, 69, 19, 0.08);
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Hero Section */
+        .reading-hero {
+            background: linear-gradient(135deg, #8B4513 0%, #D2691E 100%);
+            color: white;
+            padding: 120px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-pattern {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0.1;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            font-weight: 300;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--gold);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.8;
+        }
+
+        /* Monthly Plan Section */
+        .plan-section {
+            max-width: 1400px;
+            margin: 80px auto;
+            padding: 0 40px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #8B4513;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .months-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 30px;
+        }
+
+        .month-card {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            box-shadow: 0 10px 40px rgba(139, 69, 19, 0.1);
+            border: 1px solid rgba(139, 69, 19, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .month-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+        }
+
+        .month-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(139, 69, 19, 0.15);
+        }
+
+        .month-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .month-name {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .month-progress {
+            background: var(--light);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--secondary);
+            border: 1px solid var(--accent);
+        }
+
+        .weeks-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .week-card {
+            background: var(--cream);
+            padding: 20px;
+            border-radius: 15px;
+            border-right: 4px solid var(--accent);
+        }
+
+        .week-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .week-title {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .week-duration {
+            color: var(--secondary);
+            font-size: 0.9rem;
+            background: white;
+            padding: 4px 12px;
+            border-radius: 15px;
+        }
+
+        .reading-list {
+            list-style: none;
+        }
+
+        .reading-list li {
+            padding: 8px 0;
+            color: #5D4037;
+            position: relative;
+            padding-right: 25px;
+            border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+        }
+
+        .reading-list li:last-child {
+            border-bottom: none;
+        }
+
+        .reading-list li::before {
+            content: '📖';
+            position: absolute;
+            right: 0;
+        }
+
+        /* Elegant Footer */
+        .elegant-footer {
+            background: linear-gradient(135deg, #5D4037 0%, #8B4513 100%);
+            color: white;
+            padding: 70px 0 30px;
+            margin-top: 100px;
+        }
+
+        .footer-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand .logo-text {
+            color: white;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .footer-description {
+            color: #E0D3C7;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            max-width: 400px;
+        }
+
+        .footer-heading {
+            color: var(--accent);
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #E0D3C7;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-link {
+            width: 44px;
+            height: 44px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: #E0D3C7;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .header-container {
+                padding: 0 30px;
+            }
+            
+            .nav-links {
+                gap: 5px;
+            }
+            
+            .nav-links a {
+                padding: 10px 18px;
+                font-size: 0.9rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 20px;
+                padding: 0 20px;
+            }
+            
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+            
+            .months-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .plan-section {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Elegant Header -->
+    <header class="elegant-header">
+        <div class="header-container">
+            <a href="../index.html" class="logo">
+                <div class="logo-icon">📖</div>
+                <div class="logo-text">شبيبة الرسل</div>
+            </a>
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="../index.html">الرئيسية</a></li>
+                    <li><a href="bible-studies.html">الكتاب المقدس</a></li>
+                    <li><a href="meetings.html">الاجتماعات</a></li>
+                    <li><a href="games.html">الألعاب</a></li>
+                    <li><a href="podcast.html">البودكاست</a></li>
+                    <li><a href="bible-plan.html" class="active">خطة القراءة</a></li>
+                    <li><a href="about.html">عن الشبيبة</a></li>
+                    <li><a href="contact.html">تواصل معنا</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="reading-hero">
+        <div class="hero-pattern"></div>
+        <div class="hero-content">
+            <h1 class="hero-title">رحلة روحية عبر الكتاب المقدس</h1>
+            <p class="hero-subtitle">خطة محكمة لقراءة الكتاب المقدس كاملاً في سنة واحدة، مقسمة بشكل منهجي ومنظم</p>
+            
+            <div class="hero-stats">
+                   <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">شهر </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">52</div>
+                    <div class="stat-label">أسبوع</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">365</div>
+                    <div class="stat-label">يوم</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">73</div>
+                    <div class="stat-label">سفر</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Monthly Plan Section -->
+    <section class="plan-section">
+        <div class="section-header">
+            <h2 class="section-title">الخطة الشهرية التفصيلية</h2>
+            <p class="section-subtitle">برنامج منظم مقسم حسب الأشهر والأسابيع ليساعدك على إكمال الرحلة بنجاح</p>
+        </div>
+
+        <div class="months-grid" id="monthsContainer">
+            <!-- المحتوى سيتم إضافته بالJavaScript -->
+        </div>
+    </section>
+
+    <!-- Elegant Footer -->
+    <footer class="elegant-footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <div class="logo-text">شبيبة الرسل</div>
+                    <p class="footer-description">
+                        مجتمع شبابي ملتزم يسعى لتعميق الإيمان المسيحي وبناء جيل واعي من خلال 
+                        دراسة الكتاب المقدس والأنشطة الروحية المتنوعة.
+                    </p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/shabebet.alrosol/" class="social-link" target="_blank">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="https://www.instagram.com/shabebet.alrosol/" class="social-link" target="_blank">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h3 class="footer-heading">روابط سريعة</h3>
+                    <ul class="footer-links">
+                        <li><a href="../index.html">الرئيسية</a></li>
+                        <li><a href="bible-studies.html">الكتاب المقدس</a></li>
+                        <li><a href="meetings.html">الاجتماعات</a></li>
+                        <li><a href="podcast.html">البودكاست</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links-section">
+                    <h3 class="footer-heading">المصادر</h3>
+                    <ul class="footer-links">
+                        <li><a href="bible-plan.html">خطة القراءة</a></li>
+                        <li><a href="games.html">الألعاب</a></li>
+                        <li><a href="about.html">عن الشبيبة</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2025 شبيبة الرسل. جميع الحقوق محفوظة.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // البيانات التفصيلية للخطة مع 73 سفراً
+        const detailedPlan = [
+            {
+                month: "يناير - البداية مع أسفار موسى",
+                progress: 8,
+                weeks: [
+                    {
+                        title: "الأسبوع 1-2",
+                        duration: "14 يوم",
+                        readings: ["التكوين 1-25", "المزامير 1-25"]
+                    },
+                    {
+                        title: "الأسبوع 3-4", 
+                        duration: "14 يوم",
+                        readings: ["التكوين 26-50", "المزامير 26-50", "متى 1-14"]
+                    }
+                ]
+            },
+            {
+                month: "فبراير - الخلاص والعهد",
+                progress: 17,
+                weeks: [
+                    {
+                        title: "الأسبوع 5-6",
+                        duration: "14 يوم",
+                        readings: ["الخروج 1-20", "المزامير 51-75", "متى 15-28"]
+                    },
+                    {
+                        title: "الأسبوع 7-8",
+                        duration: "14 يوم", 
+                        readings: ["الخروج 21-40", "المزامير 76-100", "مرقس 1-8"]
+                    }
+                ]
+            },
+            {
+                month: "مارس - الشريعة والطاعة",
+                progress: 25,
+                weeks: [
+                    {
+                        title: "الأسبوع 9-10",
+                        duration: "14 يوم",
+                        readings: ["اللاويين", "المزامير 101-125", "مرقس 9-16"]
+                    },
+                    {
+                        title: "الأسبوع 11-12",
+                        duration: "14 يوم",
+                        readings: ["العدد 1-20", "المزامير 126-150", "لوقا 1-12"]
+                    }
+                ]
+            },
+            {
+                month: "أبريل - التثنية والتاريخ", 
+                progress: 33,
+                weeks: [
+                    {
+                        title: "الأسبوع 13-14",
+                        duration: "14 يوم",
+                        readings: ["العدد 21-36", "يشوع", "لوقا 13-24"]
+                    },
+                    {
+                        title: "الأسبوع 15-16",
+                        duration: "14 يوم",
+                        readings: ["التثنية", "القضاة", "يوحنا 1-12"]
+                    }
+                ]
+            },
+            {
+                month: "مايو - الممالك والأنبياء",
+                progress: 42,
+                weeks: [
+                    {
+                        title: "الأسبوع 17-18",
+                        duration: "14 يوم", 
+                        readings: ["راعوث", "صموئيل الأول", "يوحنا 13-21"]
+                    },
+                    {
+                        title: "الأسبوع 19-20",
+                        duration: "14 يوم",
+                        readings: ["صموئيل الثاني", "ملوك الأول 1-11", "أعمال الرسل 1-14"]
+                    }
+                ]
+            },
+            {
+                month: "يونيو - الأنبياء الكبار",
+                progress: 50,
+                weeks: [
+                    {
+                        title: "الأسبوع 21-22",
+                        duration: "14 يوم",
+                        readings: ["ملوك الأول 12-22", "ملوك الثاني 1-12", "أعمال الرسل 15-28"]
+                    },
+                    {
+                        title: "الأسبوع 23-24",
+                        duration: "14 يوم",
+                        readings: ["ملوك الثاني 13-25", "أخبار الأيام الأول", "رومية"]
+                    }
+                ]
+            },
+            {
+                month: "يوليو - الحكمة والتعليم", 
+                progress: 58,
+                weeks: [
+                    {
+                        title: "الأسبوع 25-26",
+                        duration: "14 يوم",
+                        readings: ["أخبار الأيام الثاني", "عزرا", "كورنثوس الأولى"]
+                    },
+                    {
+                        title: "الأسبوع 27-28",
+                        duration: "14 يوم",
+                        readings: ["نحميا", "أستير", "كورنثوس الثانية"]
+                    }
+                ]
+            },
+            {
+                month: "أغسطس - الأنبياء الصغار",
+                progress: 67,
+                weeks: [
+                    {
+                        title: "الأسبوع 29-30",
+                        duration: "14 يوم",
+                        readings: ["أيوب 1-21", "المزامير 1-25 (مراجعة)", "غلاطية، أفسس"]
+                    },
+                    {
+                        title: "الأسبوع 31-32",
+                        duration: "14 يوم",
+                        readings: ["أيوب 22-42", "الأمثال 1-15", "فيلبي، كولوسي"]
+                    }
+                ]
+            },
+            {
+                month: "سبتمبر - الحكمة والأناشيد",
+                progress: 75,
+                weeks: [
+                    {
+                        title: "الأسبوع 33-34",
+                        duration: "14 يوم",
+                        readings: ["الأمثال 16-31", "الجامعة", "تسالونيكي الأولى والثانية"]
+                    },
+                    {
+                        title: "الأسبوع 35-36",
+                        duration: "14 يوم",
+                        readings: ["نشيد الأنشاد", "يشوع بن سيراخ 1-25", "تيموثاوس الأولى والثانية"]
+                    }
+                ]
+            },
+            {
+                month: "أكتوبر - الأنبياء الكبار",
+                progress: 83,
+                weeks: [
+                    {
+                        title: "الأسبوع 37-38",
+                        duration: "14 يوم",
+                        readings: ["إشعياء 1-33", "يشوع بن سيراخ 26-51", "تيطس، فليمون"]
+                    },
+                    {
+                        title: "الأسبوع 39-40",
+                        duration: "14 يوم",
+                        readings: ["إشعياء 34-66", "الحكمة", "العبرانيين"]
+                    }
+                ]
+            },
+            {
+                month: "نوفمبر - الأنبياء والرسائل",
+                progress: 92,
+                weeks: [
+                    {
+                        title: "الأسبوع 41-42",
+                        duration: "14 يوم",
+                        readings: ["إرميا 1-29", "باروك", "يعقوب، بطرس الأولى"]
+                    },
+                    {
+                        title: "الأسبوع 43-44",
+                        duration: "14 يوم",
+                        readings: ["إرميا 30-52", "مراثي إرميا", "بطرس الثانية، يوحنا الأولى"]
+                    }
+                ]
+            },
+            {
+                month: "ديسمبر - الختام والرؤيا",
+                progress: 100,
+                weeks: [
+                    {
+                        title: "الأسبوع 45-48",
+                        duration: "28 يوم",
+                        readings: ["حزقيال", "دانيال", "يوحنا الثانية والثالثة، يهوذا"]
+                    },
+                    {
+                        title: "الأسبوع 49-52",
+                        duration: "28 يوم", 
+                        readings: ["هوشع إلى ملاخي", "طوبيا، يهوديت", "المكابيين الأول", "الرؤيا"]
+                    }
+                ]
+            }
+        ];
+
+        // عرض الخطة التفصيلية
+        function displayDetailedPlan() {
+            const container = document.getElementById('monthsContainer');
+            
+            detailedPlan.forEach(month => {
+                const monthCard = `
+                    <div class="month-card">
+                        <div class="month-header">
+                            <h3 class="month-name">${month.month}</h3>
+                            <div class="month-progress">${month.progress}% من الخطة</div>
+                        </div>
+                        <div class="weeks-container">
+                            ${month.weeks.map(week => `
+                                <div class="week-card">
+                                    <div class="week-header">
+                                        <div class="week-title">${week.title}</div>
+                                        <div class="week-duration">${week.duration}</div>
+                                    </div>
+                                    <ul class="reading-list">
+                                        ${week.readings.map(reading => `<li>${reading}</li>`).join('')}
+                                    </ul>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                `;
+                container.innerHTML += monthCard;
+            });
+        }
+
+        // تشغيل عند تحميل الصفحة
+        document.addEventListener('DOMContentLoaded', displayDetailedPlan);
+    </script>
+</body>
+</html>

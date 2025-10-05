@@ -114,13 +114,11 @@
     <section class="bible-hero">
         <div class="container">
             <h1>دراسة الكتاب المقدس</h1>
-            <p class="hero-subtitle">"كلمتك سراج لرجلي ونور لسبيلي" - مزمور 119: 105</p>
-            <div class="search-box">
-                <input type="text" id="verse-search" placeholder="ابحث عن آية أو موضوع...">
-                <button onclick="searchBible()"><i class="fas fa-search"></i></button>
-            </div>
+            <p class="hero-subtitle">"كلمتك مصباح لقدمي ونور لسبيلي " - مزمور 119: 105</p>
         </div>
     </section>
+
+
 
     <!-- قسم القراءة اليومية -->
     <section class="daily-reading">
@@ -133,6 +131,9 @@
             </div>
         </div>
     </section>
+
+
+
 
     <!-- قسم أساليب الدراسة -->
     <section class="study-categories">
@@ -189,28 +190,28 @@
                 <div class="resource-card">
                     <i class="fas fa-mobile-alt fa-3x"></i>
                     <h3>تطبيقات الكتاب المقدس</h3>
-                    <p>أفضل التطبيقات لدراسة الكتاب المقدس</p>
+                    <p>قيد التطوير</p>
                     <a href="#" class="resource-link">استكشف</a>
                 </div>
                 
                 <div class="resource-card">
                     <i class="fas fa-video fa-3x"></i>
                     <h3>فيديوهات تعليمية</h3>
-                    <p>سلسلات فيديو لشرح الكتاب المقدس</p>
+                    <p>قيد التطوير </p>
                     <a href="#" class="resource-link">شاهد</a>
                 </div>
                 
-                <div class="resource-card">
-                    <i class="fas fa-podcast fa-3x"></i>
-                    <h3>بودكاست</h3>
-                    <p>برامج صوتية للاستماع اليومي</p>
-                    <a href="#" class="resource-link">استمع</a>
-                </div>
+            <div class="resource-card">
+               <i class="fas fa-podcast fa-3x"></i>
+                <h3>بودكاست</h3>
+                 <p>برامج صوتية للاستماع اليومي</p>
+                 <a href="podcast.html" class="resource-link">استمع</a>
+                  </div>
                 
                 <div class="resource-card">
                     <i class="fas fa-book fa-3x"></i>
                     <h3>مكتبة رقمية</h3>
-                    <p>كتب ومراجع للتحميل</p>
+                    <p>قيد التطوير</p>
                     <a href="#" class="resource-link">تصفح</a>
                 </div>
             </div>
@@ -228,7 +229,9 @@
                     <div class="plan-progress">
                         <div class="progress-bar" style="width: 25%"></div>
                     </div>
-                    <button class="plan-btn">ابدأ القراءة</button>
+<button class="plan-btn" onclick="window.location.href='bible-plan.html'">
+    شاهد الخطة 
+</button>
                 </div>
                 
                 <div class="plan-card">
@@ -242,7 +245,7 @@
                 
                 <div class="plan-card">
                     <h3>خطة المواضيع</h3>
-                    <p>دراسة مواضيع محددة</p>
+                    <p>قيد التطوير </p>
                     <div class="plan-progress">
                         <div class="progress-bar" style="width: 5%"></div>
                     </div>
@@ -251,6 +254,466 @@
             </div>
         </div>
     </section>
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>حوار مع شخصيات الكتاب المقدس - شبيبة الرسل</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* أنماط القسم الجديد */
+        .characters-dialogue {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 80px 0;
+            color: white;
+        }
+
+        .dialogue-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .dialogue-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .dialogue-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .dialogue-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* معرض الشخصيات */
+        .characters-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .character-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .character-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .character-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2.5rem;
+        }
+
+        .character-name {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        .character-description {
+            opacity: 0.8;
+            margin-bottom: 20px;
+        }
+
+        .character-tag {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* منطقة الحوار */
+        .dialogue-area {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            color: #333;
+            display: none;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+
+        .dialogue-area.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .dialogue-header-area {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .character-avatar {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .back-button {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            margin-left: auto;
+        }
+
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .question-btn {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            padding: 15px;
+            border-radius: 15px;
+            cursor: pointer;
+            text-align: right;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .question-btn:hover {
+            background: #667eea;
+            color: white;
+            border-color: #667eea;
+            transform: translateX(-5px);
+        }
+
+        .dialogue-conversation {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            min-height: 200px;
+            border-right: 4px solid #667eea;
+        }
+
+        .message {
+            margin-bottom: 20px;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .user-message {
+            text-align: left;
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            border-radius: 15px 15px 5px 15px;
+            margin-left: 50px;
+        }
+
+        .character-message {
+            text-align: right;
+            background: #e9ecef;
+            padding: 15px;
+            border-radius: 15px 15px 15px 5px;
+            margin-right: 50px;
+            position: relative;
+        }
+
+        .verse-reference {
+            background: #764ba2;
+            color: white;
+            padding: 5px 12px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            margin-top: 10px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <!-- قسم حوار الشخصيات -->
+    <section class="characters-dialogue">
+        <div class="dialogue-container">
+            <div class="dialogue-header">
+                <h2 class="dialogue-title">🎭 حوار مع شخصيات الكتاب المقدس</h2>
+                <p class="dialogue-subtitle">اجلس مع عظماء الإيمان واستمع لقصصهم وتجاربهم</p>
+            </div>
+
+            <!-- معرض الشخصيات -->
+            <div class="characters-gallery">
+                <!-- مريم العذراء -->
+                <div class="character-card" onclick="openDialogue('mary')">
+                    <div class="character-icon">👑</div>
+                    <h3 class="character-name">مريم العذراء</h3>
+                    <p class="character-description">أم المسيح، الممتلئة نعمة</p>
+                    <div class="character-tag">التواضع والطاعة</div>
+                </div>
+
+                <!-- بطرس الرسول -->
+                <div class="character-card" onclick="openDialogue('peter')">
+                    <div class="character-icon">🎣</div>
+                    <h3 class="character-name">بطرس الرسول</h3>
+                    <p class="character-description">صياد السمك الذي أصبح صخرة الكنيسة</p>
+                    <div class="character-tag">الحماس والندم</div>
+                </div>
+
+                <!-- بولس الرسول -->
+                <div class="character-card" onclick="openDialogue('paul')">
+                    <div class="character-icon">📜</div>
+                    <h3 class="character-name">بولس الرسول</h3>
+                    <p class="character-description">الذي اضطهد الكنيسة فصار أعظم مبشريها</p>
+                    <div class="character-tag">التحول والشجاعة</div>
+                </div>
+            </div>
+
+            <!-- منطقة الحوار مع مريم -->
+            <div id="mary-dialogue" class="dialogue-area">
+                <div class="dialogue-header-area">
+                    <div class="character-avatar">👑</div>
+                    <div>
+                        <h3>مريم العذراء</h3>
+                        <p>أم المسيح، الممتلئة نعمة</p>
+                    </div>
+                    <button class="back-button" onclick="closeDialogue()">← العودة</button>
+                </div>
+
+                <div class="questions-grid">
+                    <button class="question-btn" onclick="askQuestion('mary', 'blessing')">كيف كانت لحظة البشارة؟</button>
+                    <button class="question-btn" onclick="askQuestion('mary', 'faith')">كيف كانت رحلتك مع الإيمان؟</button>
+                    <button class="question-btn" onclick="askQuestion('mary', 'pain')">ماذا تعلمت من الألم؟</button>
+                    <button class="question-btn" onclick="askQuestion('mary', 'advice')">ما نصيحتك للشباب اليوم؟</button>
+                </div>
+
+                <div class="dialogue-conversation" id="mary-conversation">
+                    <div class="message character-message">
+                        السلام عليكِ يا ممتلئة نعمة! أنا مريم، أمة الرب. تفضل واسألني...
+                        <div class="verse-reference">لوقا 1: 28</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- منطقة الحوار مع بطرس -->
+            <div id="peter-dialogue" class="dialogue-area">
+                <div class="dialogue-header-area">
+                    <div class="character-avatar">🎣</div>
+                    <div>
+                        <h3>بطرس الرسول</h3>
+                        <p>صياد السمك الذي أصبح صخرة الكنيسة</p>
+                    </div>
+                    <button class="back-button" onclick="closeDialogue()">← العودة</button>
+                </div>
+
+                <div class="questions-grid">
+                    <button class="question-btn" onclick="askQuestion('peter', 'call')">كيف دعاك المسيح؟</button>
+                    <button class="question-btn" onclick="askQuestion('peter', 'denial')">كيف تعاملت مع إنكارك للمسيح؟</button>
+                    <button class="question-btn" onclick="askQuestion('peter', 'faith')">متى مشيت على الماء؟</button>
+                    <button class="question-btn" onclick="askQuestion('peter', 'forgiveness')">كيف وجدت الغفران؟</button>
+                </div>
+
+                <div class="dialogue-conversation" id="peter-conversation">
+                    <div class="message character-message">
+                        السلام! أنا بطرس، الذي كان يخاف فصار شجاعاً. اسألني عن رحلتي...
+                        <div class="verse-reference">متى 4: 19</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- منطقة الحوار مع بولس -->
+            <div id="paul-dialogue" class="dialogue-area">
+                <div class="dialogue-header-area">
+                    <div class="character-avatar">📜</div>
+                    <div>
+                        <h3>بولس الرسول</h3>
+                        <p>الذي اضطهد الكنيسة فصار أعظم مبشريها</p>
+                    </div>
+                    <button class="back-button" onclick="closeDialogue()">← العودة</button>
+                </div>
+
+                <div class="questions-grid">
+                    <button class="question-btn" onclick="askQuestion('paul', 'conversion')">كيف كانت تجربة تحولك؟</button>
+                    <button class="question-btn" onclick="askQuestion('paul', 'persecution')">كيف واجهت الاضطهاد؟</button>
+                    <button class="question-btn" onclick="askQuestion('paul', 'mission')">ما سر حماسك للتبشير؟</button>
+                    <button class="question-btn" onclick="askQuestion('paul', 'strength')">من أين تأتي بقوتك؟</button>
+                </div>
+
+                <div class="dialogue-conversation" id="paul-conversation">
+                    <div class="message character-message">
+                        نعمة وسلام! أنا بولس، الذي كان يضطهد فصار يبشر. اسألني عن رحلتي المذهلة...
+                        <div class="verse-reference">أعمال 9: 15</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // بيانات الحوارات
+        const dialogues = {
+            mary: {
+                blessing: {
+                    question: "كيف كانت لحظة البشارة؟",
+                    answer: "كانت لحظة لم أفهمها كلها في البداية... ملاك الرب وقف أمامي قائلاً: 'السلام عليكِ يا ممتلئة نعمة!' شعرت بخوف، لكن النعمة ملأت قلبي. قلت: 'هوذا أنا أمة الرب'، ووضعت ثقتي الكاملة في مشيئة الله.",
+                    verse: "لوقا 1: 28-38"
+                },
+                faith: {
+                    question: "كيف كانت رحلتك مع الإيمان؟",
+                    answer: "كان الإيمان رفيق دربي في أصعب اللحظات... من البشارة إلى الصلب. كنت أحفظ كل شيء في قلبي وأتأمل فيه. الإيمان ليس مجرد شعور، بل ثقة بأن الله يعمل حتى عندما لا نفهم.",
+                    verse: "لوقا 2: 19"
+                },
+                pain: {
+                    question: "ماذا تعلمت من الألم؟",
+                    answer: "وقفت تحت الصليب ورأيت ابني يتألم... كان هذا أصعب اختبار. لكني تعلمت أن الألم مع المسيح ينتج حياة جديدة. النعمة تكفي في الضعف، والقوة تكمُل في الضعف.",
+                    verse: "يوحنا 19: 25"
+                },
+                advice: {
+                    question: "ما نصيحتك للشباب اليوم؟",
+                    answer: "قولي نعم للرب كما قلت: 'ليكن لي كقولك'. لا تخافوا من المستقبل، الثقة بالله تفتح أبواباً لا يمكن لأحد أن يغلقها. كونوا أمناء في الصغير وسيثقكم الله على الكثير.",
+                    verse: "لوقا 1: 38"
+                }
+            },
+            peter: {
+                call: {
+                    question: "كيف دعاك المسيح؟",
+                    answer: "كنت أصطاد مع أندراوس عندما قال لنا: 'هلم ورائي فأجعلكما صيادي الناس'. تركت الشباك وتبعته فوراً! شيء في عينيه جعلني أعرف أنه المسيا.",
+                    verse: "متى 4: 19-20"
+                },
+                denial: {
+                    question: "كيف تعاملت مع إنكارك للمسيح؟",
+                    answer: "كانت أسوأ ليلة في حياتي... أنكرت معرفتي به ثلاث مرات. عندما نظر إليّ، انكسر قلبي. لكن المجد لله! لقائي معه بعد القيامة غيّر كل شيء: 'يا بطرس، أتحبني؟'",
+                    verse: "يوحنا 21: 15-17"
+                },
+                faith: {
+                    question: "متى مشيت على الماء؟",
+                    answer: "رأيته يمشي على الماء فصرخت: 'يا رب، إن كنت أنت هو، فمرني أن آتي إليك على الماء!' نزلت من السفينة ومشيت! لكن عندما نظرت إلى الأمواج، خفت وبدأت أغرق. المسيح مد يده وأنقذني.",
+                    verse: "متى 14: 28-31"
+                },
+                forgiveness: {
+                    question: "كيف وجدت الغفران؟",
+                    answer: "بعد القيامة، سألني يسوع ثلاث مرات: 'أتحبني؟' كانت دموعي تتدفق... كل 'نعم' كانت تشفي جرح إنكار. علمني أن نعمته تكفي، وضعفي صار قوة.",
+                    verse: "يوحنا 21: 15-17"
+                }
+            },
+            paul: {
+                conversion: {
+                    question: "كيف كانت تجربة تحولك؟",
+                    answer: "كنت في طريق دمشق لأضطهد المسيحيين، فإذا بنور من السماء يحيط بي! سمعت صوتاً: 'شاول شاول، لماذا تضطهدني؟' في تلك اللحظة، تحول المضطهد إلى رسول!",
+                    verse: "أعمال 9: 3-6"
+                },
+                persecution: {
+                    question: "كيف واجهت الاضطهاد؟",
+                    answer: "ضربوني، رجموا بي، سجنوني... لكني كنت أقول: 'صفعوهم فضحكوا!' النعمة كانت تكفيني. في السجن كنت أسبح، وفي الألم كنت أفرح. المسيح كان قوتي.",
+                    verse: "2 كورنثوس 11: 24-28"
+                },
+                mission: {
+                    question: "ما سر حماسك للتبشير؟",
+                    answer: "الحب يلزمني! عندما عرفت محبة المسيح، لم أعد أملك خياراً إلا أن أبشر. 'الويل لي إن لم أبشر!' كنت أسافر، أكتب، أتألم... كل شيء لأجل الإنجيل.",
+                    verse: "1 كورنثوس 9: 16"
+                },
+                strength: {
+                    question: "من أين تأتي بقوتك؟",
+                    answer: "قال لي الرب: 'تكفيك نعمتي لأن قوتي في الضعف تكمل!' لذلك أفتخر بضعفاتي لكي تحل عليّ قوة المسيح. عندما أكون ضعيفاً، فحينئذٍ أنا قوي!",
+                    verse: "2 كورنثوس 12: 9-10"
+                }
+            }
+        };
+
+        // فتح حوار شخصية
+        function openDialogue(character) {
+            document.querySelectorAll('.dialogue-area').forEach(area => {
+                area.classList.remove('active');
+            });
+            document.getElementById(character + '-dialogue').classList.add('active');
+        }
+
+        // إغلاق الحوار
+        function closeDialogue() {
+            document.querySelectorAll('.dialogue-area').forEach(area => {
+                area.classList.remove('active');
+            });
+        }
+
+        // طرح سؤال
+        function askQuestion(character, questionKey) {
+            const conversation = document.getElementById(character + '-conversation');
+            const dialogue = dialogues[character][questionKey];
+            
+            // إضافة سؤال المستخدم
+            const userMessage = document.createElement('div');
+            userMessage.className = 'message user-message';
+            userMessage.textContent = dialogue.question;
+            conversation.appendChild(userMessage);
+
+            // إضافة إجابة الشخصية
+            setTimeout(() => {
+                const characterMessage = document.createElement('div');
+                characterMessage.className = 'message character-message';
+                characterMessage.innerHTML = `
+                    ${dialogue.answer}
+                    <div class="verse-reference">${dialogue.verse}</div>
+                `;
+                conversation.appendChild(characterMessage);
+                
+                // التمرير للأسفل
+                conversation.scrollTop = conversation.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
 
     <!-- قسم الأسئلة الشائعة -->
     <section class="faq-section">
@@ -263,8 +726,8 @@
                 </div>
                 
                 <div class="faq-item">
-                    <h3>ما هي أفضل ترجمة للكتاب المقدس؟</h3>
-                    <p>ترجمة الفانديك للقراءة العامة، والترجمة العربية المشتركة للدراسة المتعمقة.</p>
+                    <h3>ما هي الترجمة المعتمدة للكنيسة الكاثوليكية ؟ </h3>
+                    <p>الترجمة اليسوعية هي الترجمة المعتمدة .</p>
                 </div>
                 
                 <div class="faq-item">
@@ -277,20 +740,134 @@
 
     <footer class="footer">
         <div class="container">
-            <p>&copy; 2023 شبيبة الرسل. جميع الحقوق محفوظة.</p>
+            <p>&copy; 2025 شبيبة الرسل. جميع الحقوق محفوظة.</p>
         </div>
     </footer>
 
     <script>
-        // آيات عشوائية للقراءة اليومية
-        const verses = [
-            { text: "لأني عارف Thoughts التي أنا مفتكر بها عنكم يقول الرب thoughts سلام لا شر لإعطيكم آخرة ورجاء", reference: "إرميا 29: 11" },
-            { text: "ثق بالرب بكل قلبك وعلى فهمك لا تعتمد في كل طرقك اعهده وهو يقوم", reference: "أمثال 3: 5-6" },
-            { text: "كل الأشياء تعمل معا للخير للذين يحبون الله الذين هم مدعوون حسب قصده", reference: "رومية 8: 28" },
-            { text: "أستطيع كل شيء في المسيح الذي يقويني", reference: "فيلبي 4: 13" },
-            { text: "لا تهتموا بشيء بل في كل شيء بالصلاة والدعاء مع الشكر لتعلم طلباتكم لله", reference: "فيلبي 4: 6" }
-        ];
-
+// آيات عشوائية للقراءة اليومية - الترجمة اليسوعية
+const verses = [
+    {
+        text: "لأني عارف الأفكار التي أنا مفتكر بها عنكم يقول الرب أفكار سلام لا شر لإعطيكم آخرة ورجاء",
+        reference: "إرميا 29: 11"
+    },
+    {
+        text: "ثق بالرب بكل قلبك وعلى فهمك لا تعتمد في كل طرقك اعهده وهو يقوم",
+        reference: "أمثال 3: 5-6"
+    },
+    {
+        text: "كل الأشياء تعمل معا للخير للذين يحبون الله الذين هم مدعوون حسب قصده",
+        reference: "رومية 8: 28"
+    },
+    {
+        text: "أستطيع كل شيء في المسيح الذي يقويني",
+        reference: "فيلبي 4: 13"
+    },
+    {
+        text: "لا تهتموا بشيء بل في كل شيء بالصلاة والدعاء مع الشكر لتعلم طلباتكم لله",
+        reference: "فيلبي 4: 6"
+    },
+    {
+        text: "الله لم يرسل ابنه إلى العالم ليدين العالم بل ليخلّص به العالم",
+        reference: "يوحنا 3: 17"
+    },
+    {
+        text: "لأنه هكذا أحب الله العالم حتى بذل ابنه الوحيد لكي لا يهلك كل من يؤمن به بل تكون له الحياة الأبدية",
+        reference: "يوحنا 3: 16"
+    },
+    {
+        text: "أنا هو الطريق والحق والحياة ليس أحد يأتي إلى الآب إلا بي",
+        reference: "يوحنا 14: 6"
+    },
+    {
+        text: "احتملوا بعضكم بعضا واغفروا للتأخرات التي بينكم إن كان لأحد على أحد شكوى",
+        reference: "كولوسي 3: 13"
+    },
+    {
+        text: "أما منتظرو الرب فيجددون قوة يرفعون أجنحة كالنسور يركضون ولا يتعبون يمشون ولا يعيون",
+        reference: "إشعياء 40: 31"
+    },
+    {
+        text: "لا تخف لأني معك لا تلتفت لأني إلهك قد أيدتك وأعنتك وعضدتك بيمين بري",
+        reference: "إشعياء 41: 10"
+    },
+    {
+        text: "الرب راعي فلا يعوزني شيء في مراع خضر يربضني إلى مياه الراحة يرد نفسي",
+        reference: "مزمور 23: 1-3"
+    },
+    {
+        text: "إليك يا رب أرفع نفسي يا إلهي عليك توكلت فلا أخزى إلى الأبد",
+        reference: "مزمور 25: 1-2"
+    },
+    {
+        text: "اختبروا وأروا صلاح الرب طوبى للرجل المتكل عليه",
+        reference: "مزمور 34: 8"
+    },
+    {
+        text: "طرح على الرب همك وهو يعولك لا يدع الصدّيق يتزعزع إلى الأبد",
+        reference: "مزمور 55: 22"
+    },
+    {
+        text: "نحوك يا رب أرفع عيني يا ساكن في السموات",
+        reference: "مزمور 123: 1"
+    },
+    {
+        text: "إن اعترفنا بخطايانا فهو أمين وعادل حتى يغفر لنا خطايانا ويطهرنا من كل إثم",
+        reference: "1 يوحنا 1: 9"
+    },
+    {
+        text: "لا تخف يا عبدي لأني فديتك دعوتك باسمك أنت لي",
+        reference: "إشعياء 43: 1"
+    },
+    {
+        text: "لأنك إن اعترفت بفمك بالرب يسوع وآمنت بقلبك أن الله أقامه من الأموات خلصت",
+        reference: "رومية 10: 9"
+    },
+    {
+        text: "أما ثمر الروح فهو محبة فرح سلام طول أناة لطف صلاح إيمان",
+        reference: "غلاطية 5: 22"
+    },
+    {
+        text: "البسوا سلاح الله الكامل لتقدروا أن تثبتوا ضد مكايد إبليس",
+        reference: "أفسس 6: 11"
+    },
+    {
+        text: "كونوا فرحين في الرجاء صابرين في الضيق مواظبين على الصلاة",
+        reference: "رومية 12: 12"
+    },
+    {
+        text: "لا تهتموا للغد لأن الغد يهتم بما له يكفي اليوم شره",
+        reference: "متى 6: 34"
+    },
+    {
+        text: "اطلبوا أولاً ملكوت الله وبره وهذه كلها تزاد لكم",
+        reference: "متى 6: 33"
+    },
+    {
+        text: "تعالوا إليّ يا جميع المتعبين والثقيلي الأحمال وأنا أريحكم",
+        reference: "متى 11: 28"
+    },
+    {
+        text: "من ثمارهم تعرفهم هل يجتنون من الشوك عنبا أو من الحسك تينا",
+        reference: "متى 7: 16"
+    },
+    {
+        text: "ليكون فرحكم كاملا وهذه هي وصيتي أن تحبوا بعضكم بعضا كما أحببتكم",
+        reference: "يوحنا 15: 11-12"
+    },
+    {
+        text: "لا تكونوا خاملين في الاجتهاد حارين في الروح عابدين الرب",
+        reference: "رومية 12: 11"
+    },
+    {
+        text: "لأنه حيث اجتمع اثنان أو ثلاثة باسمي فهناك أكون في وسطهم",
+        reference: "متى 18: 20"
+    },
+    {
+        text: "أما أنتم فجنس مختص وكهنوت ملوكي أمة مقدسة شعب اقتناء",
+        reference: "1 بطرس 2: 9"
+    }
+];
         function randomVerse() {
             const randomIndex = Math.floor(Math.random() * verses.length);
             document.getElementById('daily-verse').textContent = `"${verses[randomIndex].text}"`;
