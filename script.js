@@ -83,3 +83,226 @@ if (document.querySelector('.about-hero')) {
         });
     }
 }
+
+
+// Countdown للقاء يسوع فرحي
+function initCountdown() {
+    const eventDate = new Date('2025-10-10').getTime();
+    
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = eventDate - now;
+        
+        // الحسابات
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+        
+        // تحديث الواجهة
+        document.getElementById('days').textContent = days.toString().padStart(3, '0');
+        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        
+        // تحديث مؤشر التقدم
+        const totalDays = 365; // سنة كاملة
+        const progress = Math.max(0, Math.min(100, ((totalDays - days) / totalDays) * 100));
+        document.getElementById('progress-percent').textContent = Math.round(progress) + '%';
+        document.getElementById('progress-fill').style.width = progress + '%';
+        
+        // رسائل ديناميكية
+        updateMessage(days);
+        
+        // إذا انتهى الوقت
+        if (distance < 0) {
+            clearInterval(countdownTimer);
+            document.querySelector('.countdown-timer').innerHTML = '<div class="event-ended">🎉 انطلق اللقاء! 🎉</div>';
+        }
+    }
+    
+    function updateMessage(days) {
+        const messageElement = document.getElementById('dynamic-message');
+        let message = '';
+        
+        if (days > 180) message = '💫 نبدأ رحلة الاستعداد معاً!';
+        else if (days > 90) message = '🌱 ننمو في النعمة والاستعداد';
+        else if (days > 30) message = '🚀 اقترب الموعد، استعدوا!';
+        else if (days > 7) message = '🔥 أسبوع واحد فقط! كن مستعداً';
+        else if (days > 1) message = '🎯 أيام قليلة تفصلنا عن اللقاء';
+        else if (days === 1) message = '🌟 غداً نلتقي مع يسوع!';
+        else message = '🎉 اليوم هو اليوم الموعود!';
+        
+        messageElement.textContent = message;
+    }
+    
+    // تحديث فوري أولي
+    updateCountdown();
+    
+    // تحديث كل ثانية
+    const countdownTimer = setInterval(updateCountdown, 1000);
+}
+
+// هذا السطر الناقص - يجب إضافته ↓
+initCountdown(); // تشغيل العداد
+
+
+
+
+
+// وظائف الأزرار
+function registerForEvent() {
+    const googleFormUrl = 'https://forms.gle/9PgWdoYhrEgDfHm8A';
+    window.open(googleFormUrl, '_blank', 'width=800,height=600');
+}
+
+
+
+// تهيئة Countdown عند تحميل الصفحة
+document.addEventListener('DOMContentLoaded', initCountdown);
+
+
+
+
+// التحكم في فيديو الشرح
+document.addEventListener('DOMContentLoaded', function() {
+    const video = document.querySelector('.video-container video');
+    const videoSection = document.querySelector('.video-explanation');
+    
+    if (video) {
+        // تشغيل/إيقاف الفيديو عند التمرير إليه
+        const videoObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    // يمكنك إضافة تأثير عند ظهور الفيديو
+                    videoSection.classList.add('video-visible');
+                }
+            });
+        }, { threshold: 0.3 });
+        
+        videoObserver.observe(videoSection);
+        
+        // تتبع مشاهدات الفيديو
+        video.addEventListener('play', function() {
+            console.log('بدأ المستخدم بمشاهدة فيديو الشرح');
+            // يمكنك إرسال إحصائية لـ Google Analytics هنا
+            trackVideoPlay('site_explanation_video');
+        });
+        
+        // تتبع إكمال الفيديو
+        video.addEventListener('ended', function() {
+            console.log('أكمل المستخدم مشاهدة فيديو الشرح');
+            showCompletionMessage();
+        });
+        
+        // التحكم في الصوت
+        let isMuted = false;
+        
+        // إضافة زر كتم الصوت ديناميكيًا
+        const muteButton = document.createElement('button');
+        muteButton.innerHTML = '🔊';
+        muteButton.className = 'mute-btn';
+        muteButton.style.cssText = `
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            z-index: 10;
+        `;
+        
+        video.parentElement.style.position = 'relative';
+        video.parentElement.appendChild(muteButton);
+        
+        muteButton.addEventListener('click', function() {
+            isMuted = !isMuted;
+            video.muted = isMuted;
+            muteButton.innerHTML = isMuted ? '🔇' : '🔊';
+        });
+    }
+});
+
+// دالة تتبع تشغيل الفيديو
+function trackVideoPlay(videoName) {
+    // إذا كنت تستخدم Google Analytics
+    if (typeof gtag !== 'undefined') {
+        gtag('event', 'video_play', {
+            'event_category': 'video',
+            'event_label': videoName
+        });
+    }
+    
+    // أو إذا كنت تستخدم إحصاءات مخصصة
+    logVideoView(videoName);
+}
+
+// دالة تسجيل مشاهدات الفيديو
+function logVideoView(videoName) {
+    const views = parseInt(localStorage.getItem(videoName + '_views') || '0');
+    localStorage.setItem(videoName + '_views', (views + 1).toString());
+}
+
+// دالة عرض رسالة بعد إكمال الفيديو
+function showCompletionMessage() {
+    const message = document.createElement('div');
+    message.className = 'video-completion-message';
+    message.innerHTML = `
+        <div style="
+            background: #4CAF50;
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        ">
+            <strong>شكرًا لك!</strong> نأمل أن يكون الفيديو قد ساعدك في فهم الموقع بشكل أفضل.
+        </div>
+    `;
+    
+    const videoContainer = document.querySelector('.video-container');
+    videoContainer.appendChild(message);
+    
+    // إخفاء الرسالة بعد 5 ثوانٍ
+    setTimeout(() => {
+        message.style.opacity = '0';
+        message.style.transition = 'opacity 0.5s';
+        setTimeout(() => message.remove(), 500);
+    }, 5000);
+}
+
+// تأثيرات CSS إضافية
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .video-visible {
+        animation: slideInUp 0.8s ease-out;
+    }
+    
+    @keyframes slideInUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    .video-completion-message {
+        animation: fadeIn 0.5s ease-in;
+    }
+`;
+document.head.appendChild(style);
+
+
