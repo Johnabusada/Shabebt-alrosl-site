@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
+
 <body>
     <!-- شريط التنقل -->
     <nav class="navbar">
@@ -59,10 +60,112 @@
     <section class="hero">
         <div class="hero-content">
             <h1>شبيبة الرسل</h1>
-            <p>نحن جيلٌ يعيش بالإيمان، ويسير بالرجاء، ويعمل بالمحبة</p>
+            <p>كالسهام في يد الجبار هكذا يكون أبناء سن الشباب. (مز 127 : 4 ) </p>
             <a href="#features" class="cta-button">اكتشف المزيد</a>
         </div>
     </section>
+
+
+
+<!-- Countdown للقاء يسوع فرحي -->
+<section class="event-countdown">
+    <div class="container">
+        <div class="countdown-content">
+            <!-- صورة البوستر -->
+            <div class="event-poster">
+                <img src="images/events/yaso3 fara7i.jpg" alt="لقاء يسوع فرحي 2025">
+            </div>
+            
+            <!-- محتوى Countdown -->
+            <div class="countdown-info">
+                <div class="event-header">
+                    <h2>🎉  لقاء يسوع فرحي 21 🎉</h2>
+                    <p class="bible-verse">"الاِختِبار يَلِدُ الرَّجاء" (رومة 5 : 4) "</p>
+                </div>
+                
+                <!-- العداد التفاعلي -->
+                <div class="countdown-timer">
+                    <div class="time-unit">
+                        <span class="number" id="days">000</span>
+                        <span class="label">أيام</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="number" id="hours">00</span>
+                        <span class="label">ساعات</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="number" id="minutes">00</span>
+                        <span class="label">دقائق</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="number" id="seconds">00</span>
+                        <span class="label">ثواني</span>
+                    </div>
+                </div>
+                
+                <!-- رسائل تفاعلية -->
+                <div class="countdown-message">
+                    <p id="dynamic-message">نحن في انتظار هذا اللقاء المبارك! 🌟</p>
+                </div>
+                
+                <!-- أزرار التفاعل -->
+                <div class="countdown-actions">
+                    <button class="btn-primary" onclick="registerForEvent()">
+                        <i class="fas fa-user-plus"></i> سجل حضورك
+                    </button>
+                </div>
+                
+                <!-- مؤشر التقدم -->
+                <div class="progress-section">
+                    <div class="progress-label">
+                        <span>تقدم الاستعداد</span>
+                        <span id="progress-percent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- قسم فيديو الشرح -->
+<section class="video-explanation">
+    <div class="container">
+        <div class="video-content">
+            <!-- النص على اليسار -->
+            <div class="video-text">
+                <h2>تعرف على موقعنا أكثر</h2>
+                <p>في هذا الفيديو القصير، سنأخذك في جولة سريعة داخل موقعنا لنوضح لك كيفية الاستفادة القصوى من جميع الميزات والخدمات المتاحة.</p>
+                <p>ستتعرف على:</p>
+                <ul>
+                    <li>كيفية التسجيل والمشاركة في الفعاليات</li>
+                    <li>ميزات الموقع التفاعلية</li>
+                    <li>طريقة الوصول للمواد والموارد</li>
+                    <li>كيفية التواصل مع الفريق</li>
+                </ul>
+                <p>نتمنى أن تجد في موقعنا مصدر بركة وإفادة!</p>
+            </div>
+            
+            <!-- الفيديو على اليمين -->
+            <div class="video-container">
+                <video controls poster="images/events/yaso3 fara7i.jpg">
+                    <source src="videos/website-explanation.mp4" type="video/mp4">
+                    <source src="videos/website-explanation.webm" type="video/webm">
+                    متصفحك لا يدعم تشغيل الفيديو.
+                </video>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
 
     
     <!-- قسم المسؤول العام -->
@@ -73,7 +176,7 @@
                     <img src="images/masool.jpg" alt="صورة المسؤول العام">
                 </div>
                 <div class="admin-info">
-                    <h2>المسؤول العام</h2>
+                    <h2> كلمة المسؤول العام </h2>
                     <p class="admin-name">السيد حازم حداد </p>
                     <p class="admin-desc">أعزّائي الشباب، أنتم نبض الكنيسة وروحها الحيّة.
                                           بفرحكم وإيمانكم تصيرون شهودًا حقيقيين للمسيح.
@@ -189,12 +292,12 @@
                     <h3>مسؤولة اللجنة الفنية </h3>
                     <p class="member-name">ايفلين ايوب  </p>
                 </div>
-                <!-- أمين المقر -->
+                <!-- أمين العهدة  -->
                 <div class="council-member">
                     <div class="member-image">
-                        <img src="images/council/premises.jpg" alt="أمين المقر">
+                        <img src="images/council/premises.jpg" alt="أمين العهدة ">
                     </div>
-                    <h3>أمين المقر</h3>
+                    <h3>أمين العهدة </h3>
                     <p class="member-name">مجيد سوداح </p>
                 </div>
                 <!-- أمين السر -->
@@ -220,6 +323,74 @@
         </div>
     </section>
 
+        <!-- قسم الاباء والمرشدين الروحيين   -->
+    <section class="council-section">
+        <div class="container">
+            <h2>الاباء والمرشدين الروحيين</h2>
+            <p class="section-description">تعرف على  مرشدينا الروحيين المسؤولين على التوجيه الديني </p>
+            
+            <div class="council-grid">
+            
+                                <!-- كاهن الرعية  -->
+                <div class="council-member">
+                    <div class="member-image">
+                        <img src="images/council/abouna ayad.jpg" alt="كاهن الرعية ">
+                    </div>
+                    <h3>كاهن الرعية  </h3>
+                    <p class="member-name"  >الأب اياد بدر    </p>
+                </div>
+    <!-- المرشد الروحي للشبيبة -->
+                <div class="council-member">
+                    <div class="member-image">
+                        <img src="images/council/abouna ruben .png" alt="المرشد الروحي للشبيبة ">
+                    </div>
+                    <h3>المرشد الروحي للشبيبة </h3>
+                    <p class="member-name"> الأب روبين روسيقي  </p>
+                </div>
+
+                
+                <!-- المرشد الروحي لفئتي الجامعية والعاملة  -->
+                <div class="council-member">
+                    <div class="member-image">
+                        <img src="images/council/sr lina.jpg" alt="المرشدة الروحي لفئتي الجامعيةوالعاملة ">
+                    </div>
+                    <h3>المرشدة الروحي لفئني الجامعي والعاملة  </h3>
+                    <p class="member-name">الأخت لينا سانوسيان  </p>
+                </div>
+                
+                <!-- المرشد الروحي لفئة الثانوي  -->
+                <div class="council-member">
+                    <div class="member-image">
+                        <img src="images/council/sr leen .jpg" alt="المرشد الروحي لفئة الثانوي">
+                    </div>
+                    <h3>المرشد الروحي لفئة الثانوي</h3>
+                    <p class="member-name">الأخت لين هلسة  </p>
+                </div>
+                
+                <!-- المرشد الروحي لفئة الاعدادي-->
+                <div class="council-member">
+                    <div class="member-image">
+                        <img src="images/council/sr lela .jpg" alt="المرشد الروحي لفئة الاعدادي">
+                    </div>
+                    <h3>المرشد الروحي لفئة الاعدادي</h3>
+                    <p class="member-name">الأخت ليلى النمري  </p>
+                </div>
+                
+                <!-- المرشد الروحي لفئة البراعم -->
+                <div class="council-member">
+                    <div class="member-image">
+                        <img src="images/council/sr lara.jpg" alt="المرشد الروحي لفئة الاعدادي">
+                    </div>
+                    <h3>المرشد الروحي لفئة البراعم </h3>
+                    <p class="member-name">الأخت لارا حجازين  </p>
+                </div>
+                
+                
+            </div>
+        </div>
+    </section>
+
+
     <!-- قسم أخبار شبيبة الرسل -->
     <section class="news-section">
         <div class="container">
@@ -227,55 +398,69 @@
             <p class="section-description">تابع آخر أخبار وأنشطة وشبيبة الرسل</p>
             
             <div class="news-grid">
-                <!-- خبر 1 -->
+                       <!-- خبر 1 -->
                 <div class="news-card">
                     <div class="news-image">
-                        <img src="images/news/camp.jpg" alt="المخيم السنوي 2023">
-                        <div class="news-date">15 أغسطس 2023</div>
+                        <img src="images/news/dori.jpg" alt="دوري المعمدان  2025 ">
+                        <div class="news-date">22  أغسطس  2025</div>
                     </div>
                     <div class="news-content">
-                        <h3>المخيم السنوي 2023</h3>
-                        <p>انطلق مخيم شبيبة الرسل السنوي بعنوان "إيماننا قوة" بمشاركة 120 شاباً وشابة من مختلف الفئات.</p>
-                        <a href="pages/news/camp.html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
+                        <h3>دوري المعمدان  2025 </h3>
+                        <p>حققت شبيبة الرسل لفئتي الأعدادي والثانوي المركز الأول في دوري المعمدان .</p>
+                        <a href="pages/news/news 1.html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
                     </div>
                 </div>
-                
+
                 <!-- خبر 2 -->
                 <div class="news-card">
                     <div class="news-image">
-                        <img src="images/news/retreat-2023.jpg" alt="الخلوة الروحية 2023">
-                        <div class="news-date">20 أكتوبر 2023</div>
+                        <img src="images/news/camp.jpg" alt="المخيم السنوي 2025">
+                        <div class="news-date">31 يوليو  2025</div>
                     </div>
                     <div class="news-content">
-                        <h3>الخلوة الروحية 2023</h3>
-                        <p>اختتمت خلوة الشبيبة الروحية التي أقيمت في دير السيدة بعنوان "نمو في النعمة" بمشاركة 80 شاباً.</p>
-                        <a href="pages/news/retreat-2023.html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
+                        <h3>المخيم السنوي 2025</h3>
+                        <p>انطلق مخيم شبيبة الرسل السنوي بعنوان "إيمانك قد شفاك " في الكرك -ادر  بمشاركة 40  شاباً وشابة من فئتي الاعدادي والثانوي .</p>
+                        <a href="pages/news/news 2.html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
                     </div>
                 </div>
                 
                 <!-- خبر 3 -->
                 <div class="news-card">
                     <div class="news-image">
-                        <img src="images/news/conference-2024.jpg" alt="المؤتمر الشبابي 2024">
-                        <div class="news-date">5 يناير 2024</div>
+                        <img src="images/news/news 3.jpg" alt="المدرسة الصيفية 2025 ">
+                        <div class="news-date">25  يوليو  2025</div>
                     </div>
                     <div class="news-content">
-                        <h3>المؤتمر الشبابي 2024</h3>
-                        <p>انطلق المؤتمر الشبابي السنوي تحت عنوان "شهود للمسيح" بمشاركة أكثر من 200 شاب من مختلف الكنائس.</p>
-                        <a href="pages/news/conference-2024.html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
+                        <h3>المدرسة الصيفية 2025</h3>
+                        <p>اختتمت شبيبة الرسل المدرسة الصيفية الخاصة بالرعية بعنوان "جنود الرجاء ".</p>
+                        <a href="pages/news/news 3 .html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
                     </div>
                 </div>
                 
-                <!-- خبر 4 -->
+                                <!-- خبر 4 -->
                 <div class="news-card">
                     <div class="news-image">
-                        <img src="images/news/charity-2023.jpg" alt="الحملة الخيرية 2023">
-                        <div class="news-date">12 ديسمبر 2023</div>
+                        <img src="images/news/news 4.jpg" alt="الخلوة الروحية 2023">
+                        <div class="news-date">18  ابريل  2025</div>
                     </div>
                     <div class="news-content">
-                        <h3>الحملة الخيرية 2023</h3>
-                        <p>نظمت الشبيبة حملة خيرية لتوزيع الهدايا والمواد الغذائية على 50 عائلة محتاجة في المنطقة.</p>
-                        <a href="pages/news/charity-2023.html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
+                        <h3>درب  الصليب 2025</h3>
+                        <p>ِشبيبة الرسل بكل فئاتها تحيي رياضة درب الصليب التقليدي في ساحة الرعية وسط جو روحي وايماني .</p>
+                        <a href="pages/news/news 4.html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
+                    </div>
+                </div>
+                
+
+                <!-- خبر 5 -->
+                <div class="news-card">
+                    <div class="news-image">
+                        <img src="images/news/news 5.jpg" alt="كارنفال الشبيبة  2025 ">
+                        <div class="news-date">21  مارس  2025</div>
+                    </div>
+                    <div class="news-content">
+                        <h3>كارنفال الشبيبة 2025</h3>
+                        <p>احييت شبيبة الرسل لفئتي الأعدادي والثانوي كارنفال الشبيبة الثالث وسط حضور كثيف من ابناء الفئة والرعية .</p>
+                        <a href="pages/news/news 5 .html" class="news-link">اقرأ التقرير الكامل <i class="fas fa-arrow-left"></i></a>
                     </div>
                 </div>
             </div>
@@ -327,6 +512,4 @@
 
     <script src="script.js"></script>
 </body>
-
 </html>
-
