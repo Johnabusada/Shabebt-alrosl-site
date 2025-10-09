@@ -155,6 +155,10 @@ function registerForEvent() {
     const googleFormUrl = 'https://forms.gle/9PgWdoYhrEgDfHm8A';
     window.open(googleFormUrl, '_blank', 'width=800,height=600');
 }
+// دالة للذهاب إلى البث المباشر على Facebook
+function goToLiveStream() {
+    window.open('https://www.facebook.com/shabebet.alrosol', '_blank');
+}
 
 
 
