@@ -93,6 +93,24 @@ function initCountdown() {
         const now = new Date().getTime();
         const distance = eventDate - now;
         
+        // إذا انتهى الوقت
+        if (distance < 0) {
+            clearInterval(countdownTimer);
+            // عرض أصفار في جميع الخانات
+            document.getElementById('days').textContent = '000';
+            document.getElementById('hours').textContent = '00';
+            document.getElementById('minutes').textContent = '00';
+            document.getElementById('seconds').textContent = '00';
+            
+            // تحديث مؤشر التقدم إلى 100%
+            document.getElementById('progress-percent').textContent = '100%';
+            document.getElementById('progress-fill').style.width = '100%';
+            
+            // رسالة انتهاء الحدث
+            document.querySelector('.countdown-timer').innerHTML = '<div class="event-ended">🎉 انطلق اللقاء! 🎉</div>';
+            return;
+        }
+        
         // الحسابات
         const days = Math.floor(distance / (1000 * 60 * 60 * 24));
         const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
@@ -113,39 +131,12 @@ function initCountdown() {
         
         // رسائل ديناميكية
         updateMessage(days);
-        
-        // إذا انتهى الوقت
-        if (distance < 0) {
-            clearInterval(countdownTimer);
-            document.querySelector('.countdown-timer').innerHTML = '<div class="event-ended">🎉 انطلق اللقاء! 🎉</div>';
-        }
     }
-    
-    function updateMessage(days) {
-        const messageElement = document.getElementById('dynamic-message');
-        let message = '';
-        
-        if (days > 180) message = '💫 نبدأ رحلة الاستعداد معاً!';
-        else if (days > 90) message = '🌱 ننمو في النعمة والاستعداد';
-        else if (days > 30) message = '🚀 اقترب الموعد، استعدوا!';
-        else if (days > 7) message = '🔥 أسبوع واحد فقط! كن مستعداً';
-        else if (days > 1) message = '🎯 أيام قليلة تفصلنا عن اللقاء';
-        else if (days === 1) message = '🌟 غداً نلتقي مع يسوع!';
-        else message = '🎉 اليوم هو اليوم الموعود!';
-        
-        messageElement.textContent = message;
-    }
-    
-    // تحديث فوري أولي
-    updateCountdown();
-    
-    // تحديث كل ثانية
+
+    // بدء العد التنازلي
     const countdownTimer = setInterval(updateCountdown, 1000);
+    updateCountdown(); // التشغيل الفوري
 }
-
-// هذا السطر الناقص - يجب إضافته ↓
-initCountdown(); // تشغيل العداد
-
 
 
 
@@ -308,5 +299,6 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+
 
 
