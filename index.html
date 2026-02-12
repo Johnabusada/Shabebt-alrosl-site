@@ -73,35 +73,222 @@
     </section>
 
 
-
-<!-- Countdown EVENT  -->
+<!-- Countdown EVENT - Carnival 2026 -->
 <section class="event-countdown">
     <div class="container">
         <div class="countdown-content">
-            <!-- صورة البوستر -->
+            <!-- Poster Image -->
             <div class="event-poster">
-                <img src="images/events/EVENT1.jpg" alt="المسابقة الرعوية">
+                <img src="images/events/CARNIVAL2026.jpg" alt="كارنفال الشبيبة الرابع">
             </div>
             
-            <!-- محتوى Countdown -->
+            <!-- Countdown Content -->
             <div class="countdown-info">
                 <div class="event-header">
-                    <h2>🎉 المسابقة الرعوية 🎉</h2>
-                    <p class="bible-verse">"كونوا مُستَعِدِّينَ" 1بط 3:15</p>
+                    <h2>🎉 كارنفال الشبيبة الرابع 2026! 🎉</h2>
+                    <p class="bible-verse">"تَنَبَّهُوا وَاثْبُتُوا" 1 كورنثوس 16:13</p>
 
-                        <p>
-        تتشرّف <strong>شبيبة الرسل</strong> بتنظيم المسابقة الرعويّة السنوية 
-        بمناسبة زمن المجيء استعدادًا للأعياد الميلادية، والتي تأتي هذا العام تحت عنوان:
-        <br><strong>"كونوا مُستَعِدِّينَ" – 1 بط 3:15</strong>
-    </p>
+                    <p>
+                        تدعوكم <strong>شبيبة الرسل</strong> لفئتي <strong>الإعدادي والثانوي</strong> 
+                        للمشاركة في يوم حافل بالإيمان والمتعة تحت شعار:
+                        <br><span class="theme-highlight">✨ "تَنَبَّهُوا وَاثْبُتُوا" – 1 كورنثوس 16:13 ✨</span>
+                    </p>
 
+                    <!-- Registration Button -->
+                    <div class="registration-section">
+                        <a href="https://forms.gle/dfERxcfb44e2Jrfy8" target="_blank" class="register-btn">
+                            <span class="btn-icon">📝</span>
+                            سجل الآن في الكارنفال
+                            <span class="btn-icon">🎪</span>
+                        </a>
+                        <p class="register-note">يرجى تعبئة الرابط للتسجيل</p>
+                    </div>
 
+                    <!-- Add countdown timer here if needed -->
+                    <div class="countdown-timer" style="margin-top: 25px;">
+                        <!-- Timer component can be added -->
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
 
+<style>
+/* Blue theme styles for Carnival event */
+.event-countdown {
+    background: linear-gradient(135deg, #e6f0fa 0%, #b8d4e7 100%);
+    padding: 60px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.countdown-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 94, 156, 0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(0, 123, 255, 0.3);
+}
+
+.event-poster {
+    flex: 1;
+    max-width: 400px;
+}
+
+.event-poster img {
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 8px 25px rgba(0, 81, 148, 0.4);
+    border: 4px solid #0077be;
+    transition: transform 0.3s ease;
+}
+
+.event-poster img:hover {
+    transform: scale(1.02);
+}
+
+.countdown-info {
+    flex: 1.5;
+}
+
+.event-header h2 {
+    color: #004a7c;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+    text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+    border-bottom: 3px solid #0077be;
+    padding-bottom: 15px;
+    display: inline-block;
+}
+
+.bible-verse {
+    font-size: 1.5rem;
+    color: #005a9c;
+    font-weight: bold;
+    background: rgba(0, 119, 190, 0.1);
+    padding: 10px 20px;
+    border-radius: 50px;
+    display: inline-block;
+    margin: 15px 0;
+    border-right: 5px solid #0077be;
+    border-left: 5px solid #0077be;
+}
+
+.event-header p {
+    color: #025073;
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-top: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+    border: 1px dashed #0077be;
+}
+
+.theme-highlight {
+    color: #004080;
+    background: linear-gradient(120deg, #c7e3ff 0%, #a3d0ff 100%);
+    padding: 5px 15px;
+    border-radius: 50px;
+    display: inline-block;
+    margin-top: 10px;
+    font-weight: 700;
+    border: 2px solid #0066b3;
+}
+
+/* Registration Button Styles */
+.registration-section {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.register-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    background: linear-gradient(145deg, #0066b3, #004a7c);
+    color: white;
+    font-size: 1.3rem;
+    font-weight: bold;
+    padding: 16px 35px;
+    border-radius: 60px;
+    text-decoration: none;
+    box-shadow: 0 8px 0 #002b44, 0 10px 25px rgba(0, 102, 179, 0.5);
+    transition: all 0.2s ease;
+    border: 2px solid #9ad0ff;
+    letter-spacing: 1px;
+}
+
+.register-btn:hover {
+    background: linear-gradient(145deg, #0077be, #005a9c);
+    transform: translateY(5px);
+    box-shadow: 0 3px 0 #002b44, 0 12px 30px rgba(0, 102, 179, 0.6);
+    color: white;
+    border-color: #e6f7ff;
+}
+
+.btn-icon {
+    font-size: 1.6rem;
+}
+
+.register-note {
+    margin-top: 12px;
+    color: #004d80;
+    font-size: 1rem;
+    font-weight: 600;
+    background: rgba(255, 255, 255, 0.6);
+    padding: 8px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    border: 1px solid #0077be;
+}
+
+/* Arabic font support */
+[lang="ar"], .event-countdown {
+    direction: rtl;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .countdown-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .event-poster {
+        max-width: 100%;
+    }
+    
+    .event-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .bible-verse {
+        font-size: 1.2rem;
+    }
+    
+    .register-btn {
+        font-size: 1.1rem;
+        padding: 14px 25px;
+        gap: 10px;
+    }
+    
+    .btn-icon {
+        font-size: 1.3rem;
+    }
+}
+</style>
 
 
 
@@ -463,3 +650,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+
